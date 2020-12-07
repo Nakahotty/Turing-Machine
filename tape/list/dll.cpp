@@ -78,7 +78,7 @@ DLL<T>::~DLL()
 }
 
 template<typename T>
-void DLL<T>::print()
+void DLL<T>::print() const
 {
     Node *cur = first;
     while(cur != nullptr)
@@ -287,13 +287,13 @@ size_t DLL<T>::size() const
 }
 
 template<typename T>
-T& DLL<T>::front() const
+T& DLL<T>::getFirst() const
 {
     return this->first->data;
 }
 
 template<typename T>
-T& DLL<T>::back() const
+T& DLL<T>::getLast() const
 {
     return this->last->data;
 }

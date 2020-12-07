@@ -18,10 +18,8 @@ private:
     };
 private:
     Node *first,*last;
-
     void copy(const DLL<T>&);
     void destroy();
-    
 public:
     DLL();
     DLL(const DLL<T>&);
@@ -29,7 +27,7 @@ public:
     T& operator[](size_t);
     ~DLL();
 
-    void print();
+    void print() const;
     DLL<T>& push(const T&);
     DLL<T>& push_back(const T&);
     DLL<T>& pop();
@@ -41,8 +39,8 @@ public:
     void swap(Node* left, Node* right);
 
     size_t size() const;
-    T& front() const;
-    T& back() const;
+    T& getFirst() const;
+    T& getLast() const;
     bool empty();
 
     class Iterator

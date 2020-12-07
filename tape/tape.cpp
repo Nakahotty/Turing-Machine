@@ -1,26 +1,24 @@
+#ifndef __TAPE_CPP
+#define __TAPE_CPP
+
 #include "tape.h"
 
-template <typename T>
-Tape<T>::Tape() {
+Tape::Tape() {
     for (size_t i = 0; i < 10; i++) {
-        list.push_back(" ");
+        list.push_back(' ');
     }
 }
 
-template <typename T>
-Tape<T>::Tape(const DLL<T> list) {
+Tape::Tape(const DLL<char> list) {
     this->list = list;
 }
 
-template <typename T>
-void Tape<T>::print() const {
-    int size = list.size();
-    for(size_t i = 0; i < size; i++) {
-        std::cout << list[i] << std::endl;
-    }
+void Tape::print() const {
+    list.print();
 }
 
-template <typename T>
-const T& Tape<T>::operator[](size_t i) {
+const char& Tape::operator[](size_t i) const {
 
 }
+
+#endif
