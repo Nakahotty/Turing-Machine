@@ -24,7 +24,8 @@ public:
     DLL();
     DLL(const DLL<T>&);
     DLL<T>& operator=(const DLL<T>&);
-    T& operator[](size_t);
+    T operator[](size_t);
+    const T& operator[](size_t) const;
     ~DLL();
 
     void print() const;

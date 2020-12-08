@@ -54,7 +54,18 @@ DLL<T>& DLL<T>::operator=(const DLL<T>& others)
 }
 
 template <typename T>
-T& DLL<T>::operator[](size_t i) {
+T DLL<T>::operator[](size_t i) {
+    Node* curr = first;
+
+    while (curr != nullptr && i-- > 0) {
+        curr = curr->next;
+    }
+
+    return curr->data;
+}
+
+template <typename T>
+const T& DLL<T>::operator[](size_t i) const {
     Node* curr = first;
 
     while (curr != nullptr && i-- > 0) {
