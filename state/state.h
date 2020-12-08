@@ -1,6 +1,5 @@
-#ifndef __STATE_H
-#define __STATE_H
-#pragma once
+#ifndef STATE_H
+#define STATE_H
 
 #include <iostream>
 #include <string>
@@ -9,9 +8,10 @@
 
 class State {
 public:
+    State();
 private:
     std::string name;
-    // std::vector<Transition*> transitions;
+    std::vector<Transition*> transitions;
 };
 
 #endif

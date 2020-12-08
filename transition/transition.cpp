@@ -1,7 +1,9 @@
-#ifndef __TRANSITION_CPP
-#define __TRANSITION_CPP
+#ifndef TRANSITION_CPP
+#define TRANSITION_CPP
 
 #include "transition.h"
+
+Transition::Transition() {}
 
 #endif
 

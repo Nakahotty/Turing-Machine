@@ -1,6 +1,8 @@
-#ifndef __STATE_CPP
-#define __STATE_CPP
+#ifndef STATE_CPP
+#define STATE_CPP
 
 #include "state.h"
+
+State::State() {}
 
 #endif

@@ -1,10 +1,12 @@
-#ifndef __TRANSITION_H
-#define __TRANSITION_H
-#pragma once
-#include "../state/state.h"
+#ifndef TRANSITION_H
+#define TRANSITION_H
+#include <vector>
+
+class State;
 
 class Transition {
 public:
+    Transition();
 private:
     char read,write,cmd;
     std::vector<State*> states;

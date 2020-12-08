@@ -1,6 +1,5 @@
-#ifndef __MACHINE_H
-#define __MACHINE_H
-#pragma once
+#ifndef MACHINE_H
+#define MACHINE_H
 
 #include "../tape/tape.h"
 #include "../transition/transition.h"

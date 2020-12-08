@@ -1,5 +1,5 @@
-#ifndef __MACHINE_CPP
-#define __MACHINE_CPP
+#ifndef MACHINE_CPP
+#define MACHINE_CPP
 
 #include "machine.h"
 
