@@ -4,10 +4,11 @@
 #include "transition/transition.cpp"
 
 int main() {
-    DLL<int> list;
-    list.push(1);
-    list.push(2);
-    list.push(3);
-    list.push(4);
-    list.print();
+    Tape tape("1001101");
+    tape.print();
+    std::cout << tape.read() << std::endl;
+    tape.moveLeft();
+    tape.moveLeft();
+    std::cout << tape.read() << std::endl;
+    tape.printWithCurr();
 }
