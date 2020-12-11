@@ -86,4 +86,8 @@ void Tape::moveLeft() {
     curr = list[--currIndex];
 }
 
+void Tape::moveNot() {
+    // не правим нищо
+}
+
 #endif

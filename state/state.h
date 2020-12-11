@@ -8,7 +8,12 @@
 
 class State {
 public:
-    State();
+    State(const std::string& name);
+    
+    std::string getName() const;
+    void addTransition(Transition*);
+    bool hasTransition(const char& input);
+    Transition* getTransition(const char& input);
 private:
     std::string name;
     std::vector<Transition*> transitions;

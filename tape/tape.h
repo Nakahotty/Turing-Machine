@@ -19,6 +19,7 @@ public:
     int readIndex() const;
     void moveRight();
     void moveLeft();
+    void moveNot();
 private:
     DLL<char> list;
     const char SPACE = ' ';

@@ -6,10 +6,14 @@ class State;
 
 class Transition {
 public:
-    Transition();
+    Transition(char, char, char, State*);
+    State* getNextState();
+    char getReadSymbol() const;
+    char getWriteSymbol() const;
+    char getCommand() const;
 private:
     char read,write,cmd;
-    std::vector<State*> states;
+    State* state;
 };
 
 #endif

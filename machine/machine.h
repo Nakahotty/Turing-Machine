@@ -7,6 +7,7 @@
 
 class Machine {
 public:
+    void step();
 private:
     std::vector<State*> states;
     State currentState;
