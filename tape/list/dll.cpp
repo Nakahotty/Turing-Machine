@@ -54,7 +54,7 @@ DLL<T>& DLL<T>::operator=(const DLL<T>& others)
 }
 
 template <typename T>
-T DLL<T>::operator[](size_t i) {
+T& DLL<T>::operator[](size_t i) {
     Node* curr = first;
 
     while (curr != nullptr && i-- > 0) {

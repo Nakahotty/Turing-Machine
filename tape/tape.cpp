@@ -29,9 +29,6 @@ Tape::Tape(const DLL<char> list) {
 void Tape::print() const {
     int size = list.size();
     for(int i = 0; i < size; i++) {
-        if (list[i] == SPACE)
-            continue;
-
         std::cout << list[i] << " | ";
     }
 
@@ -41,9 +38,6 @@ void Tape::print() const {
 void Tape::printWithCurr() const {
     int size = list.size();
     for(int i = 0; i < size; i++) {
-        if (list[i] == SPACE)
-            continue;
-
         std::cout << list[i] << " | ";
     }
 
@@ -62,6 +56,7 @@ const char Tape::operator[](size_t i) {
 
 void Tape::write(char c) {
     curr = c;
+    list[currIndex] = c;
 }
 
 char Tape::read() const {
