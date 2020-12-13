@@ -17,7 +17,7 @@ State* Machine::findState(const std::string& stateName) {
         }
     }
 
-    return nullptr
+    return nullptr;
 }
 
 bool Machine::isThereState(const std::string& stateName) {
@@ -41,11 +41,7 @@ void Machine::iterate() {
         Преминаваме на следващо състояние
     */
 
-    std::cout << currentState->getName() << std::endl;
-
     Transition* next = currentState->getTransition(tape.read());
-
-    std::cout << next->getReadSymbol() << std::endl;
 
     tape.write(next->getWriteSymbol());
 
@@ -64,7 +60,7 @@ void Machine::iterate() {
 }
 
 void Machine::start() {
-    while (currentState->getName() == "halt")
+    while (currentState->getName() != "halt")
         iterate();
 }
 

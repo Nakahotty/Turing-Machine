@@ -3,12 +3,8 @@
 
 #include "transition.h"
 
-Transition::Transition(char read, char write, char cmd, State* state) {
-    this->read = read;
-    this->write = write;
-    this->cmd = cmd;    
-    this->state = state;
-}
+Transition::Transition(char _read, char _write, char _cmd, State* _state) :
+    read(_read), write(_write), cmd(_cmd), state(_state) {}
 
 State* Transition::getNextState() {
     return state;
