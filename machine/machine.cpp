@@ -3,4 +3,69 @@
 
 #include "machine.h"
 
+Machine::Machine(const std::string& input, State* start) :
+    tape(Tape(input)), currentState(start) {}
+
+void Machine::addState(State* state) {
+    states.push_back(state);
+}
+
+State* Machine::findState(const std::string& stateName) {
+    for(State* s : states) {
+        if (s->getName() == stateName) {
+            return s; 
+        }
+    }
+
+    return nullptr
+}
+
+bool Machine::isThereState(const std::string& stateName) {
+    for(State* s : states) {
+        if (s->getName() == stateName)
+            return true;
+    }
+
+    return false;
+}
+
+void Machine::print() {
+    tape.printWithCurr();
+}
+
+void Machine::iterate() {
+    /* 
+        Получаваме прехода по подаден символ
+        Записваме върху лентата символа, който е WRITE
+        Проверяваме командата, за да преместим машината по лентата
+        Преминаваме на следващо състояние
+    */
+
+    std::cout << currentState->getName() << std::endl;
+
+    Transition* next = currentState->getTransition(tape.read());
+
+    std::cout << next->getReadSymbol() << std::endl;
+
+    tape.write(next->getWriteSymbol());
+
+    switch (next->getCommand()) {
+        case 'L':
+            tape.moveLeft();
+            break;
+        case 'R':
+            tape.moveRight();
+            break;
+        default:
+            break;
+    };
+
+    currentState = next->getNextState();
+}
+
+void Machine::start() {
+    while (currentState->getName() == "halt")
+        iterate();
+}
+
 #endif

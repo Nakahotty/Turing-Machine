@@ -7,10 +7,18 @@
 
 class Machine {
 public:
-    void step();
+    Machine(const std::string&, State*);
+
+    void addState(State*);
+    State* findState(const std::string&);
+    bool isThereState(const std::string&);
+    
+    void print();
+    void iterate();
+    void start();
 private:
-    std::vector<State*> states;
-    State currentState;
+    std::vector<State*> states; // всички състояния заданени на машината
+    State* currentState; // текущото
     Tape tape;
 };
 

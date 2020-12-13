@@ -28,7 +28,7 @@ bool State::hasTransition(const char& input) {
 Transition* State::getTransition(const char& input) {
     for(std::vector<Transition*>::iterator it = transitions.begin(); it != transitions.end(); ++it) {
         Transition* curr = *it;
-        // if(curr->getReadSymbol() == input)
+        if (curr->getReadSymbol() == input)
             return curr;
     }
 
