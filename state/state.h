@@ -19,4 +19,6 @@ private:
     std::vector<Transition*> transitions;
 };
 
+std::ostream& operator<<(std::ostream& out, State& state);
+
 #endif

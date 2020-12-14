@@ -35,4 +35,9 @@ Transition* State::getTransition(const char& input) {
     return nullptr;
 }
 
+std::ostream& operator<<(std::ostream& out, State& state) {
+    out << '{' << state.getName() << '}';
+    return out;
+}
+
 #endif

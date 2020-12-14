@@ -22,6 +22,15 @@ char Transition::getCommand() const {
     return cmd;
 }
 
+std::ostream& operator<<(std::ostream& out, Transition& transition) {
+    /* out << transition.getReadSymbol() << '/' << transition.getWriteSymbol() << "," 
+    << transition.getCommand() << std::endl; */
+
+    State* s = transition.getNextState();
+    out << transition.getWriteSymbol() << '{' << s->getName() << "}";
+    return out;
+}
+
 
 #endif
 

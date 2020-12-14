@@ -41,11 +41,15 @@ void Machine::iterate() {
         Преминаваме на следващо състояние
     */
 
+    std::cout << tape.read() << *currentState << " -> ";
+
     Transition* next = currentState->getTransition(tape.read());
+    std::cout << *next << next->getCommand() << std::endl;
 
     tape.write(next->getWriteSymbol());
-
-    switch (next->getCommand()) {
+    
+    char cmd = next->getCommand();
+    switch (cmd) {
         case 'L':
             tape.moveLeft();
             break;

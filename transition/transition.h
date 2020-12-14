@@ -1,6 +1,7 @@
 #ifndef TRANSITION_H
 #define TRANSITION_H
 #include <vector>
+#include <iostream>
 
 class State;
 
@@ -15,5 +16,7 @@ private:
     char read,write,cmd;
     State* state;
 };
+
+std::ostream& operator<<(std::ostream& out, Transition& transition);
 
 #endif
