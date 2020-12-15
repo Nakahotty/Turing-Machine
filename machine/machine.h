@@ -16,6 +16,7 @@ public:
     void print();
     void iterate();
     void start();
+    bool finishedSuccessfuly() const;
 private:
     std::vector<State*> states; // всички състояния заданени на машината
     State* currentState; // текущото

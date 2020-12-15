@@ -61,11 +61,22 @@ void Machine::iterate() {
     };
 
     currentState = next->getNextState();
+
+    if (next == nullptr) {
+        currentState = nullptr;
+        return;
+    }
 }
 
 void Machine::start() {
-    while (currentState->getName() != "halt")
+    while (currentState != nullptr && currentState->getName() != "halt")
         iterate();
+        
+    std::cout << std::endl;
+}
+
+bool Machine::finishedSuccessfuly() const {
+    return currentState != nullptr && currentState->getName() == "halt";
 }
 
 #endif
