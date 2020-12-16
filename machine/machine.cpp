@@ -44,6 +44,13 @@ void Machine::iterate() {
     std::cout << tape.read() << *currentState << " -> ";
 
     Transition* next = currentState->getTransition(tape.read());
+    
+    if (next == nullptr) {
+        std::cout << "{error}\nThe machine could not finish!" << std::endl;
+        currentState = nullptr;
+        return;
+    }
+    
     std::cout << *next << next->getCommand() << std::endl;
 
     tape.write(next->getWriteSymbol());
@@ -61,11 +68,6 @@ void Machine::iterate() {
     };
 
     currentState = next->getNextState();
-
-    if (next == nullptr) {
-        currentState = nullptr;
-        return;
-    }
 }
 
 void Machine::start() {
