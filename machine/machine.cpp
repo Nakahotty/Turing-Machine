@@ -66,6 +66,9 @@ void Machine::iterate() {
         case 'R':
             tape.moveRight();
             break;
+        case 'H':
+            tape.moveNot();
+            break;
         default:
             break;
     };
@@ -78,7 +81,7 @@ void Machine::start() {
         iterate();
         
     if (finishedSuccessfuly()) {
-        out << "Machine finished successfuly!" << std::endl;
+        out << "Machine finished successfuly!\n" << std::endl;
     }
 }
 

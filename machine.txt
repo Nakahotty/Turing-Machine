@@ -1,14 +1,17 @@
 0{q0} -> 1{q1}L
-1{q1} -> 0{q1}L
-0{q1} -> 0{q2}L
-0{q2} -> 1{q2}L
-0{q2} -> 1{q2}L
-1{q2} -> 1{halt}L
-Machine finished successfuly!
+1{q1} -> {error}
+The machine could not finish!
 0{q0} -> 1{q1}L
-1{q1} -> 0{q1}L
-0{q1} -> 1{q2}L
-0{q2} -> 1{q2}L
-0{q2} -> 1{q2}L
+1{q1} -> 0{q2}L
+0{q2} -> 0{q2}R
+0{q2} -> 0{q2}R
 1{q2} -> 1{halt}L
 Machine finished successfuly!
+
+0{q0} -> 1{q1}L
+1{q1} -> 0{q2}L
+0{q2} -> 0{q2}R
+0{q2} -> 0{q2}R
+1{q2} -> 1{halt}L
+Machine finished successfuly!
+
