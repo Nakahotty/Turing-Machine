@@ -2,9 +2,12 @@
 #define MACHINE_CPP
 
 #include "machine.h"
+#include <fstream>
 
-Machine::Machine(const std::string& input, State* start) :
-    tape(Tape(input)), currentState(start) {}
+Machine::Machine(const std::string& input, State* start) : tape(Tape(input)), currentState(start) {
+    fileName = "machine.txt";
+    out.open(fileName.c_str(), std::ofstream::app);
+}
 
 void Machine::addState(State* state) {
     states.push_back(state);
@@ -41,17 +44,17 @@ void Machine::iterate() {
         Преминаваме на следващо състояние
     */
 
-    std::cout << tape.read() << *currentState << " -> ";
+    out << tape.read() << *currentState << " -> ";
 
     Transition* next = currentState->getTransition(tape.read());
     
     if (next == nullptr) {
-        std::cout << "{error}\nThe machine could not finish!" << std::endl;
+        out << "{error}\nThe machine could not finish!" << std::endl;
         currentState = nullptr;
         return;
     }
     
-    std::cout << *next << next->getCommand() << std::endl;
+    out << *next << next->getCommand() << std::endl;
 
     tape.write(next->getWriteSymbol());
     
@@ -74,8 +77,20 @@ void Machine::start() {
     while (currentState != nullptr && currentState->getName() != "halt")
         iterate();
         
-    std::cout << std::endl;
+    if (finishedSuccessfuly()) {
+        out << "Machine finished successfuly!" << std::endl;
+    }
 }
+
+
+void Machine::readMachine() {
+
+}
+
+void Machine::writeMachine() {
+
+}
+
 
 bool Machine::finishedSuccessfuly() const {
     return currentState != nullptr && currentState->getName() == "halt";

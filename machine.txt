@@ -1,0 +1,14 @@
+0{q0} -> 1{q1}L
+1{q1} -> 0{q1}L
+0{q1} -> 0{q2}L
+0{q2} -> 1{q2}L
+0{q2} -> 1{q2}L
+1{q2} -> 1{halt}L
+Machine finished successfuly!
+0{q0} -> 1{q1}L
+1{q1} -> 0{q1}L
+0{q1} -> 1{q2}L
+0{q2} -> 1{q2}L
+0{q2} -> 1{q2}L
+1{q2} -> 1{halt}L
+Machine finished successfuly!
