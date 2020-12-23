@@ -1,21 +1,19 @@
 #ifndef __OPERATIONS_H
 #define __OPERATIONS_H
 
-#include "../machine/machine.h"
+#include "../machine/machine.cpp"
 
 class TuringOperation {
 public:
+    TuringOperation();
     void initializeStates();
     void initializeTransitions();
+    void initalizeMachine(const std::string&, State*);
+
     void runMachine();
 private:
     Machine machine;
-};
-
-class Composition : public TuringOperation {
-public:
-
-private:
+    State* getState(const std::string&);
 };
 
 #endif
