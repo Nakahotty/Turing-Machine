@@ -5,7 +5,7 @@
 
 class TuringOperation {
 public:
-    TuringOperation();
+    TuringOperation(const std::string&);
     void initializeStates();
     void initializeTransitions();
     void initalizeMachine(const std::string&, State*);

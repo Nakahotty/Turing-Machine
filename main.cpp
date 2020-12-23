@@ -5,6 +5,6 @@
 #include "operations/operations.cpp"
 
 int main() {
-    TuringOperation turingCtrl;
-    turingCtrl.runMachine();
+    TuringOperation machineCtrl("00100010");
+    machineCtrl.runMachine();
 }

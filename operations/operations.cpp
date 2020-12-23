@@ -3,7 +3,7 @@
 
 #include "operations.h"
 
-TuringOperation::TuringOperation() : machine(Machine("00100010")) {}
+TuringOperation::TuringOperation(const std::string& input) : machine(Machine(input)) {}
 
 void TuringOperation::initializeStates() {
     // ----- Инициализираме състоянията и преходите ----- //
