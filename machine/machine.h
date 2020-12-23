@@ -8,18 +8,20 @@
 
 class Machine {
 public:
+    Machine();
     Machine(const std::string&, State*);
+    Machine(const Machine&);
+    Machine& operator=(const Machine&);
 
     void addState(State*);
     State* findState(const std::string&);
     bool isThereState(const std::string&);
+    void setCurrentState(State*);
+    void setTape(const std::string&);
     
     void print();
     void iterate();
     void start();
-
-    void readMachine();
-    void writeMachine();
 
     bool finishedSuccessfuly() const;
 private:
@@ -29,6 +31,8 @@ private:
 
     std::string fileName;
     std::ofstream out;
+
+    void copy(const Machine&);
 };
 
 #endif

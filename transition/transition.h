@@ -8,6 +8,7 @@ class State;
 class Transition {
 public:
     Transition(char, char, char, State*);
+    Transition& operator=(const Transition& other);
     State* getNextState();
     char getReadSymbol() const;
     char getWriteSymbol() const;

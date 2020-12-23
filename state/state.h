@@ -9,6 +9,7 @@
 class State {
 public:
     State(const std::string& name);
+    State& operator=(const State&);
     
     std::string getName() const;
     void addTransition(Transition*);

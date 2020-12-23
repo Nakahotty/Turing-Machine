@@ -4,9 +4,23 @@
 #include "machine.h"
 #include <fstream>
 
-Machine::Machine(const std::string& input, State* start) : tape(Tape(input)), currentState(start) {
+Machine::Machine(const std::string& input, State* start = nullptr) : tape(Tape(input)), currentState(start) {
     fileName = "machine.txt";
     out.open(fileName.c_str(), std::ofstream::app);
+}
+
+Machine::Machine() {}
+
+Machine::Machine(const Machine& other) {
+    this->copy(other);
+}
+
+Machine& Machine::operator=(const Machine& other) {
+    if (this != &other) {
+        this->copy(other);
+    }
+
+    return *this;
 }
 
 void Machine::addState(State* state) {
@@ -30,6 +44,14 @@ bool Machine::isThereState(const std::string& stateName) {
     }
 
     return false;
+}
+
+void Machine::setCurrentState(State* currentState) {
+    this->currentState = currentState;
+}
+
+void Machine::setTape(const std::string& input) {
+    tape = Tape(input);
 }
 
 void Machine::print() {
@@ -85,18 +107,16 @@ void Machine::start() {
     }
 }
 
-
-void Machine::readMachine() {
-
-}
-
-void Machine::writeMachine() {
-
-}
-
-
 bool Machine::finishedSuccessfuly() const {
     return currentState != nullptr && currentState->getName() == "halt";
 }
+
+void Machine::copy(const Machine& other) {
+    states = other.states;
+    currentState = other.currentState;
+    tape = other.tape;
+    fileName = other.fileName;
+}
+
 
 #endif

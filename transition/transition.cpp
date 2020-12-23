@@ -6,6 +6,13 @@
 Transition::Transition(char _read, char _write, char _cmd, State* _state) :
     read(_read), write(_write), cmd(_cmd), state(_state) {}
 
+Transition& Transition::operator=(const Transition& other) {
+    this->state = other.state;
+    this->read = other.read;
+    this->write = other.write;
+    this->cmd = other.cmd;
+}
+
 State* Transition::getNextState() {
     return state;
 }

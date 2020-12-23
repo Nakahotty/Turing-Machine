@@ -10,6 +10,7 @@ public:
     Tape();
     Tape(const std::string& input);
     Tape(const DLL<char> list);
+    Tape& operator=(const Tape&);
     void print() const;
     void printWithCurr() const;
     const char operator[](size_t i);

@@ -12,6 +12,11 @@ std::string State::getName() const {
     return name;
 }
 
+State& State::operator=(const State& other) {
+    name = other.name;
+    transitions = other.transitions;
+}
+
 void State::addTransition(Transition* trans) {
     transitions.push_back(trans);
 }

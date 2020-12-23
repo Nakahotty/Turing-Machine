@@ -26,6 +26,13 @@ Tape::Tape(const DLL<char> list) {
     this->list = list;
 }
 
+
+Tape& Tape::operator=(const Tape& other) {
+    list = other.list;
+    curr = other.curr;
+    currIndex = other.currIndex;
+}
+
 void Tape::print() const {
     int size = list.size();
     for(int i = 0; i < size; i++) {
