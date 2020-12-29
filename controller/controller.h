@@ -1,11 +1,11 @@
-#ifndef __OPERATIONS_H
-#define __OPERATIONS_H
+#ifndef __CONTROLLER_H
+#define __CONTROLLER_H
 
 #include "../machine/machine.cpp"
 
-class TuringOperation {
+class MachineController {
 public:
-    TuringOperation(const std::string&);
+    MachineController(const std::string&);
     void initializeStates();
     void initializeTransitions();
     void initalizeMachine(const std::string&, State*);

@@ -2,9 +2,9 @@
 #include "tape/tape.cpp"
 #include "state/state.cpp"
 #include "transition/transition.cpp"
-#include "operations/operations.cpp"
+#include "controller/controller.cpp"
 
 int main() {
-    TuringOperation machineCtrl("00100010");
-    machineCtrl.runMachine();
+    MachineController ctrl("00100010");
+    ctrl.runMachine();
 }

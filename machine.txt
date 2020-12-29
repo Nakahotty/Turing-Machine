@@ -12,3 +12,8 @@ Machine finished successfuly!
 1{q2} -> 1{halt}L
 Machine finished successfuly!
 
+0{q0} -> 1{q1}L
+1{q1} -> 0{q2}R
+1{q2} -> 1{halt}L
+Machine finished successfuly!
+

@@ -1,11 +1,11 @@
-#ifndef __OPERATIONS_CPP
-#define __OPERATIONS_CPP
+#ifndef __CONTROLLER_CPP
+#define __CONTROLLER_CPP
 
-#include "operations.h"
+#include "controller.h"
 
-TuringOperation::TuringOperation(const std::string& input) : machine(Machine(input)) {}
+MachineController::MachineController(const std::string& input) : machine(Machine(input)) {}
 
-void TuringOperation::initializeStates() {
+void MachineController::initializeStates() {
     // ----- Инициализираме състоянията и преходите ----- //
 
     State* q0 = new State("q0");
@@ -21,13 +21,13 @@ void TuringOperation::initializeStates() {
     machine.setCurrentState(q0);
 }   
 
-void TuringOperation::initializeTransitions() {
+void MachineController::initializeTransitions() {
     // ----- Добавяме състоянията в машината както и преходите между тях ----- //
     Transition* q01 = new Transition('0', '1', 'L', getState("q1"));
-    Transition* q02 = new Transition('1', '1', 'L', getState("q2"));
+    Transition* q02 = new Transition('1', '0', 'R', getState("q2"));
     Transition* q11 = new Transition('0', '0', 'L', getState("q1"));
-    Transition* q12 = new Transition('1', '0', 'L', getState("q2"));
-    Transition* q21 = new Transition('0', '0', 'R', getState("q2"));
+    Transition* q12 = new Transition('1', '0', 'R', getState("q2"));
+    Transition* q21 = new Transition('0', '1', 'H', getState("q2"));
     Transition* q22 = new Transition('1', '1', 'L', getState("halt"));
 
     machine.findState("q0")->addTransition(q01);
@@ -38,11 +38,11 @@ void TuringOperation::initializeTransitions() {
     machine.findState("q2")->addTransition(q22);
 }
 
-void TuringOperation::initalizeMachine(const std::string& tape, State* initState) {
+void MachineController::initalizeMachine(const std::string& tape, State* initState) {
     machine = Machine(tape,initState);
 }
 
-void TuringOperation::runMachine() {
+void MachineController::runMachine() {
     initializeStates();
     initializeTransitions();
 
@@ -52,7 +52,7 @@ void TuringOperation::runMachine() {
     std::cout << "Finished: " << machine.finishedSuccessfuly() << std::endl;
 }
 
-State* TuringOperation::getState(const std::string& s) {
+State* MachineController::getState(const std::string& s) {
     return machine.findState(s);
 }
 
