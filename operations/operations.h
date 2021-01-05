@@ -9,6 +9,9 @@ public:
     void composition();
     void decider();
     void loopOverMachine();
+
+    // helpers
+    void initTwoMachines(Machine*& first, Machine*& second);
 };
 
 #endif
