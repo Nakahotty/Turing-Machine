@@ -99,8 +99,10 @@ void Machine::iterate() {
 }
 
 void Machine::start() {
-    while (currentState != nullptr && currentState->getName() != "halt")
+    while (currentState != nullptr && currentState->getName() != "halt") {
         iterate();
+    }   
+        
         
     if (finishedSuccessfuly()) {
         out << "Machine finished successfuly!\n" << std::endl;

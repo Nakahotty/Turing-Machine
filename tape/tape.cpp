@@ -18,7 +18,8 @@ Tape::Tape(const std::string& input) {
     }
 
     curr = list.getLast();
-    currIndex = size - 1;
+    currIndex = size; // беше size-1, защото добавяме спейс отпред и отзад
+    list.push(SPACE);
     list.push_back(SPACE);
 }
 
@@ -35,7 +36,11 @@ Tape& Tape::operator=(const Tape& other) {
 
 void Tape::print() const {
     int size = list.size();
+    std::cout << size << std::endl;
     for(int i = 0; i < size; i++) {
+        if (i == size-1)
+            std::cout << list[i];
+
         std::cout << list[i] << " | ";
     }
 
@@ -45,7 +50,10 @@ void Tape::print() const {
 void Tape::printWithCurr() const {
     int size = list.size();
     for(int i = 0; i < size; i++) {
-        std::cout << list[i] << " | ";
+        if (i == size-1)
+            std::cout << list[i];
+        else  
+            std::cout << list[i] << " | ";
     }
 
     std::cout << std::endl;

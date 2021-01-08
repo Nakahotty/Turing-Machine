@@ -3,8 +3,9 @@
 #include "state/state.cpp"
 #include "transition/transition.cpp"
 #include "controller/controller.cpp"
+#include "operations/operations.cpp"
 
 int main() {
-    MachineController ctrl("00100010");
-    ctrl.runMachine();
+    Operations op;
+    op.decider();    
 }

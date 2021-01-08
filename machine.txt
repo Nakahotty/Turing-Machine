@@ -1,14 +1,5 @@
 0{q0} -> 1{q1}L
-1{q1} -> 0{q2}L
-0{q2} -> 0{q2}R
-0{q2} -> 0{q2}R
-1{q2} -> 1{halt}L
-Machine finished successfuly!
-
-0{q0} -> 1{q1}L
-1{q1} -> 0{q2}L
-0{q2} -> 0{q2}R
-0{q2} -> 0{q2}R
+1{q1} -> 0{q2}R
 1{q2} -> 1{halt}L
 Machine finished successfuly!
 
@@ -20,5 +11,113 @@ Machine finished successfuly!
 0{q0} -> 1{q1}L
 1{q1} -> 0{q2}R
 1{q2} -> 1{halt}L
+Machine finished successfuly!
+
+1{init} -> 1{halt}L
+Machine finished successfuly!
+
+1{init} -> 0{q0}L
+0{q0} -> 0{q0}L
+1{q0} -> 0{q0}L
+1{q0} -> 0{q0}L
+0{q0} -> 0{q0}L
+0{q0} -> 0{q0}L
+ {q0} ->  {halt}R
+Machine finished successfuly!
+
+1{init} -> 1{halt}L
+Machine finished successfuly!
+
+1{init} -> 0{q0}L
+0{q0} -> 0{q0}L
+1{q0} -> 0{q0}L
+1{q0} -> 0{q0}L
+0{q0} -> 0{q0}L
+0{q0} -> 0{q0}L
+ {q0} ->  {halt}R
+Machine finished successfuly!
+
+1{init} -> 1{halt}L
+Machine finished successfuly!
+
+1{init} -> 0{q0}L
+0{q0} -> 0{q0}L
+1{q0} -> 0{q0}L
+1{q0} -> 0{q0}L
+0{q0} -> 0{q0}L
+0{q0} -> 0{q0}L
+ {q0} ->  {halt}R
+Machine finished successfuly!
+
+1{init} -> 1{halt}L
+Machine finished successfuly!
+
+1{init} -> 0{q0}L
+0{q0} -> 0{q0}L
+1{q0} -> 0{q0}L
+1{q0} -> 0{q0}L
+0{q0} -> 0{q0}L
+0{q0} -> 0{q0}L
+ {q0} ->  {halt}R
+Machine finished successfuly!
+
+1{init} -> 1{halt}L
+Machine finished successfuly!
+
+1{init} -> 0{q0}L
+0{q0} -> 0{q0}L
+1{q0} -> 0{q0}L
+1{q0} -> 0{q0}L
+0{q0} -> 0{q0}L
+0{q0} -> 0{q0}L
+ {q0} ->  {halt}R
+Machine finished successfuly!
+
+1{init} -> 1{halt}L
+Machine finished successfuly!
+
+1{init} -> 0{q0}L
+0{q0} -> 0{q0}L
+1{q0} -> 0{q0}L
+1{q0} -> 0{q0}L
+0{q0} -> 0{q0}L
+0{q0} -> 0{q0}L
+ {q0} ->  {halt}R
+Machine finished successfuly!
+
+1{init} -> 1{halt}L
+Machine finished successfuly!
+
+1{init} -> 0{q0}L
+0{q0} -> 0{q0}L
+1{q0} -> 0{q0}L
+1{q0} -> 0{q0}L
+0{q0} -> 0{q0}L
+0{q0} -> 0{q0}L
+ {q0} ->  {halt}R
+Machine finished successfuly!
+
+1{init} -> 1{halt}L
+Machine finished successfuly!
+
+1{init} -> 0{q0}L
+0{q0} -> 0{q0}L
+1{q0} -> 0{q0}L
+1{q0} -> 0{q0}L
+0{q0} -> 0{q0}L
+0{q0} -> 0{q0}L
+ {q0} ->  {halt}R
+Machine finished successfuly!
+
+1{init} -> 1{halt}L
+Machine finished successfuly!
+
+1{init} -> 0{q0}L
+0{q0} -> 0{q0}L
+1{q0} -> 0{q0}L
+1{q0} -> 0{q0}L
+0{q0} -> 0{q0}L
+0{q0} -> 0{q0}L
+ {q0} ->  {halt}R
 Machine finished successfuly!
 
