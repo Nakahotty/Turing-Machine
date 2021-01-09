@@ -7,5 +7,5 @@
 
 int main() {
     Operations op;
-    op.decider();    
+    op.composition();  
 }

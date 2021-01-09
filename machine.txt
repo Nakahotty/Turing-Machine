@@ -10,3 +10,11 @@ Machine finished successfuly!
  {q0} ->  {halt}R
 Machine finished successfuly!
 
+0{init} -> 0{to zero}L
+1{to zero} -> 0{to zero}L
+0{to zero} -> 0{to zero}L
+1{to zero} -> 0{to zero}L
+1{to zero} -> 0{to zero}L
+ {to zero} ->  {halt}R
+Machine finished successfuly!
+
