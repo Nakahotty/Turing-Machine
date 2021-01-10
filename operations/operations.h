@@ -5,16 +5,10 @@
 #include "../controller/controller.h"
 
 class Operations {
-public:
-    Operations() {};
-    void composition();
-    void decider();
-    void loopOverMachine();
-
-    // helpers
-    void initTwoMachines(Machine& first, Machine& second);
-    void initZeroMachine(Machine& zeroMachine);
-    void initXMachine(Machine& XMachine);
+public: 
+    static void composition();
+    static void decider();
+    static void loopOverMachine();
 };
 
 #endif

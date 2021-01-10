@@ -6,6 +6,5 @@
 #include "operations/operations.cpp"
 
 int main() {
-    Operations op;
-    op.composition();  
+    Operations::decider();
 }

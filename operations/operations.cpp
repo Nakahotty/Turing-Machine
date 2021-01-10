@@ -7,19 +7,22 @@ void Operations::composition() {
     // Дадено: 2 машини - Т1, Т2; вход - А
     // А = 11011 | Т1(А) -> 00000 | T2(T1(A)) -> XXXXX
     // Композиция: done
+
+    MachineController* ctrl; 
     std::string A = "11010";
     Machine T1(A);
-    initZeroMachine(T1);
+    ctrl->initZeroMachine(T1);
     T1.start();
     T1.print();
     
     std::string converted_A = T1.getTape();
     Machine T2(converted_A);
-    initXMachine(T2);
+    ctrl->initXMachine(T2);
     T2.start();
     T2.print();
 }
 void Operations::decider() {
+    MachineController* ctrl; 
     Machine decider("001101");
     State* init = new State("init");
     State* reject = new State("reject");
@@ -39,7 +42,7 @@ void Operations::decider() {
     decider.print();
 
     Machine first("001101"),second("001101");
-    initTwoMachines(first, second);
+    ctrl->initTwoMachines(first, second);
     if (decider.finishedSuccessfuly()) {
         std::cout << "Decider finished SUCCESSFULY!" << std::endl;
         first.start();
@@ -54,86 +57,9 @@ void Operations::decider() {
 }
 
 void Operations::loopOverMachine() {
-
+    MachineController* ctrl; 
 }
 
 
-void Operations::initTwoMachines(Machine& first, Machine& second) {
-    // first - writes zeros
-    // second - writes ones
-    
-    State* init = new State("init");
-    State* q0 = new State("q0");
-    State* q1 = new State("q1");
-    State* halt = new State("halt");
-
-    first.addState(init);
-    first.addState(q0);
-    second.addState(init);
-    second.addState(q1);
-
-    first.setCurrentState(init);
-    second.setCurrentState(init);
-    
-    Transition* q00 = new Transition('0', '0', 'L', q0);
-    Transition* q10 = new Transition('1', '0', 'L', q0);
-    Transition* q01 = new Transition('0', '1', 'L', q1);
-    Transition* q11 = new Transition('1', '1', 'L', q1);
-    Transition* q_ = new Transition(' ', ' ', 'R', halt);
-
-    first.findState("init")->addTransition(q00);
-    first.findState("init")->addTransition(q10);
-    first.findState("q0")->addTransition(q00);
-    first.findState("q0")->addTransition(q10);
-    first.findState("q0")->addTransition(q_);
-    
-    second.findState("init")->addTransition(q01);
-    second.findState("init")->addTransition(q11);
-    second.findState("q1")->addTransition(q01);
-    second.findState("q1")->addTransition(q11);
-    second.findState("q1")->addTransition(q_);
-}
-
-void Operations::initZeroMachine(Machine& zeroMachine) {
-    State* toZero = new State("to zero"); 
-    State* init = new State("init");
-    State* halt = new State("halt");
-
-    Transition* q00 = new Transition('0', '0', 'L', toZero);
-    Transition* q10 = new Transition('1', '0', 'L', toZero);
-    Transition* q_ = new Transition(' ', ' ', 'R', halt);
-
-    zeroMachine.addState(init);
-    zeroMachine.addState(halt);
-    zeroMachine.addState(toZero);
-
-    zeroMachine.setCurrentState(init);
-    zeroMachine.findState("init")->addTransition(q10);
-    zeroMachine.findState("init")->addTransition(q00);
-    zeroMachine.findState("to zero")->addTransition(q00);
-    zeroMachine.findState("to zero")->addTransition(q10);
-    zeroMachine.findState("to zero")->addTransition(q_);
-}
-
-void Operations::initXMachine(Machine& XMachine) {
-    State* toX = new State("X"); 
-    State* init = new State("init");
-    State* halt = new State("halt");
-
-    Transition* q0X = new Transition('0', 'X', 'L', toX);
-    Transition* q1X = new Transition('1', 'X', 'L', toX);
-    Transition* q_ = new Transition(' ', ' ', 'R', halt);
-
-    XMachine.addState(init);
-    XMachine.addState(halt);
-    XMachine.addState(toX);
-
-    XMachine.setCurrentState(init);
-    XMachine.findState("init")->addTransition(q1X);
-    XMachine.findState("init")->addTransition(q0X);
-    XMachine.findState("X")->addTransition(q0X);
-    XMachine.findState("X")->addTransition(q1X);
-    XMachine.findState("X")->addTransition(q_);
-}
 
 #endif
