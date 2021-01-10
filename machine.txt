@@ -1,13 +1,17 @@
-1{init} -> 1{halt}L
+0{init} -> 0{to zero}L
+1{to zero} -> 0{to zero}L
+0{to zero} -> 0{to zero}L
+1{to zero} -> 0{to zero}L
+1{to zero} -> 0{to zero}L
+ {to zero} ->  {halt}R
 Machine finished successfuly!
 
-1{init} -> 0{q0}L
-0{q0} -> 0{q0}L
-1{q0} -> 0{q0}L
-1{q0} -> 0{q0}L
-0{q0} -> 0{q0}L
-0{q0} -> 0{q0}L
- {q0} ->  {halt}R
+0{init} -> X{X}L
+1{X} -> X{X}L
+0{X} -> X{X}L
+1{X} -> X{X}L
+1{X} -> X{X}L
+ {X} ->  {halt}R
 Machine finished successfuly!
 
 0{init} -> 0{to zero}L
@@ -16,5 +20,13 @@ Machine finished successfuly!
 1{to zero} -> 0{to zero}L
 1{to zero} -> 0{to zero}L
  {to zero} ->  {halt}R
+Machine finished successfuly!
+
+0{init} -> X{X}L
+0{X} -> X{X}L
+0{X} -> X{X}L
+0{X} -> X{X}L
+0{X} -> X{X}L
+ {X} ->  {halt}R
 Machine finished successfuly!
 

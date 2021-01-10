@@ -14,6 +14,7 @@ public:
     // helpers
     void initTwoMachines(Machine& first, Machine& second);
     void initZeroMachine(Machine& zeroMachine);
+    void initXMachine(Machine& XMachine);
 };
 
 #endif
