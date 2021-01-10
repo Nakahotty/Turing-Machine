@@ -14,6 +14,7 @@ public:
     void print() const;
     void printWithCurr() const;
     const char operator[](size_t i);
+    std::string getTapeString() const;
 
     void write(char);
     char read() const;

@@ -69,6 +69,16 @@ const char Tape::operator[](size_t i) {
     return list[i];
 }
 
+std::string Tape::getTapeString() const {
+    std::string res;
+    int size = list.size();
+    for(int i = 0; i < size; i++) {
+        if (list[i] != ' ')
+            res += list[i];
+    }    
+    return res;
+}
+
 void Tape::write(char c) {
     curr = c;
     list[currIndex] = c;

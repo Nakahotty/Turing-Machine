@@ -18,6 +18,7 @@ public:
     bool isThereState(const std::string&);
     void setCurrentState(State*);
     void setTape(const std::string&);
+    std::string getTape() const;
     
     void print();
     void iterate();

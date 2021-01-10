@@ -54,6 +54,11 @@ void Machine::setTape(const std::string& input) {
     tape = Tape(input);
 }
 
+
+std::string Machine::getTape() const {
+    return tape.getTapeString();
+}
+
 void Machine::print() {
     tape.printWithCurr();
 }
