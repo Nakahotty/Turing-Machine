@@ -13,14 +13,17 @@ void Operations::composition() {
     Machine T1(A);
     ctrl->initZeroMachine(T1);
     T1.start();
+    std::cout << " First convertion of input" << std::endl;
     T1.print();
     
     std::string converted_A = T1.getTape();
     Machine T2(converted_A);
     ctrl->initXMachine(T2);
     T2.start();
+    std::cout << " Second convertion of input" << std::endl;
     T2.print();
 }
+
 void Operations::decider() {
     MachineController* ctrl; 
     Machine decider("001101");
