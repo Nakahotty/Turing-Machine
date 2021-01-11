@@ -60,7 +60,13 @@ void Operations::decider() {
 }
 
 void Operations::loopOverMachine() {
-    MachineController* ctrl; 
+    MachineController* ctrl;
+    
+    std::string whileInput("0010000"), iterateInput("abc"); 
+    Machine whileMachine(whileInput);
+    Machine iterateMachine(iterateInput);
+
+    
 }
 
 
