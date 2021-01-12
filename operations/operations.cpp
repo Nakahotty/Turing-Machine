@@ -62,11 +62,23 @@ void Operations::decider() {
 void Operations::loopOverMachine() {
     MachineController* ctrl;
     
-    std::string whileInput("0010000"), iterateInput("abc"); 
+    std::string whileInput("001000"), mainInput("000009"); 
     Machine whileMachine(whileInput);
-    Machine iterateMachine(iterateInput);
+    Machine main(mainInput);
 
-    
+    ctrl->initLoopMachines(whileMachine, main);
+
+    whileMachine.print();
+    main.print();
+
+    while (!whileMachine.finishedSuccessfuly()) {
+        // някво действие с main
+        main.iterate();
+        whileMachine.iterate();
+    }
+
+    whileMachine.print();
+    main.print();
 }
 
 

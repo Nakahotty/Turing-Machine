@@ -11,6 +11,7 @@ public:
     void initializeTransitions();
     void initalizeMachine(const std::string&, State*);
     void initTwoMachines(Machine& first, Machine& second);
+    void initLoopMachines(Machine& whileMachine, Machine& main);
     void initZeroMachine(Machine& zeroMachine);
     void initXMachine(Machine& XMachine);
 

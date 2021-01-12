@@ -6,5 +6,5 @@
 #include "operations/operations.cpp"
 
 int main() {
-    Operations::composition();
+    Operations::loopOverMachine();
 }

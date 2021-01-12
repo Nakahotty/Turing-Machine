@@ -81,6 +81,40 @@ void MachineController::initTwoMachines(Machine& first, Machine& second) {
     initZeroMachine(second);
 }
 
+void MachineController::initLoopMachines(Machine& whileMachine, Machine& main) {
+    State* init = new State("init");
+    State* searchOne = new State("searchOne");
+    State* halt = new State("halt");
+
+    Transition* q00 = new Transition('0', '0', 'L', searchOne);
+    Transition* q11 = new Transition('1', '1', 'H', halt);
+    
+    whileMachine.addState(init);
+    whileMachine.addState(searchOne);
+    whileMachine.addState(halt);
+
+    whileMachine.setCurrentState(init);
+    whileMachine.findState("init")->addTransition(q00);
+    whileMachine.findState("init")->addTransition(q11);
+    whileMachine.findState("searchOne")->addTransition(q00);
+    whileMachine.findState("searchOne")->addTransition(q11);
+
+    State* addChar = new State("addChar");
+    
+    Transition* writeChar = new Transition('0', '5', 'L', addChar);
+    Transition* startChar = new Transition('9', 'X', 'L', addChar);
+    Transition* writeOnSpace = new Transition(' ', 'X', 'L', halt);
+
+    main.addState(init);
+    main.addState(addChar);
+    main.addState(halt);
+
+    main.setCurrentState(init);
+    main.findState("init")->addTransition(startChar);
+    main.findState("addChar")->addTransition(writeChar);
+    main.findState("addChar")->addTransition(writeOnSpace);
+}
+
 void MachineController::initZeroMachine(Machine& zeroMachine) {
     State* toZero = new State("to zero"); 
     State* init = new State("init");
