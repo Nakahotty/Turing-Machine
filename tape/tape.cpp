@@ -94,15 +94,19 @@ int Tape::readIndex() const {
 void Tape::moveRight() {
     curr = list[++currIndex];
 
-    if (curr == ' ')
+    if (curr == ' ') {
+        currIndex--;
         list.push_back(SPACE);
+    }
 }
 
 void Tape::moveLeft() {
     curr = list[--currIndex];
 
-    if (curr == ' ') 
+    if (curr == ' ') {
+        currIndex++;
         list.push(SPACE);
+    }
 }
 
 void Tape::moveNot() {
