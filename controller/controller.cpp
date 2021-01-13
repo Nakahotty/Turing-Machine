@@ -103,7 +103,7 @@ void MachineController::initLoopMachines(Machine& whileMachine, Machine& main) {
     
     Transition* writeChar = new Transition('0', '5', 'L', addChar);
     Transition* startChar = new Transition('9', 'X', 'L', addChar);
-    Transition* writeOnSpace = new Transition(' ', 'X', 'L', addChar);
+    Transition* writeOnSpace = new Transition(' ', '5', 'L', addChar);
 
     main.addState(init);
     main.addState(addChar);

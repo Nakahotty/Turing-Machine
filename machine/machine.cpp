@@ -108,7 +108,6 @@ void Machine::start() {
         iterate();
     }   
         
-        
     if (finishedSuccessfuly()) {
         out << "Machine finished successfuly!\n" << std::endl;
     }
