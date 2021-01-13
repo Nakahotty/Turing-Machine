@@ -36,7 +36,6 @@ Tape& Tape::operator=(const Tape& other) {
 
 void Tape::print() const {
     int size = list.size();
-    std::cout << size << std::endl;
     for(int i = 0; i < size; i++) {
         if (i == size-1)
             std::cout << list[i];
@@ -93,21 +92,25 @@ int Tape::readIndex() const {
 }
 
 void Tape::moveRight() {
-    if (list.getLast() == '\0')
-        list.push_back(SPACE);
-
     curr = list[++currIndex];
+
+    if (curr == ' ')
+        list.push_back(SPACE);
 }
 
 void Tape::moveLeft() {
-    if (list.getFirst() == '\0')
-        list.push(SPACE);
-
     curr = list[--currIndex];
+
+    if (curr == ' ') 
+        list.push(SPACE);
 }
 
 void Tape::moveNot() {
     // не правим нищо
+}
+
+void Tape::addSpace() {
+    list.push(SPACE);
 }
 
 #endif

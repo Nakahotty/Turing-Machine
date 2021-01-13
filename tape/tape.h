@@ -22,6 +22,7 @@ public:
     void moveRight();
     void moveLeft();
     void moveNot();
+    void addSpace();
 private:
     DLL<char> list;
     const char SPACE = ' ';

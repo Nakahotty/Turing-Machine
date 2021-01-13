@@ -62,7 +62,7 @@ void Operations::decider() {
 void Operations::loopOverMachine() {
     MachineController* ctrl;
     
-    std::string whileInput("001000"), mainInput("000009"); 
+    std::string whileInput("001000"), mainInput("009"); 
     Machine whileMachine(whileInput);
     Machine main(mainInput);
 
@@ -75,6 +75,11 @@ void Operations::loopOverMachine() {
         // някво действие с main
         main.iterate();
         whileMachine.iterate();
+
+        // if (!main.finishedSuccessfuly()) {
+        //     std::cout << "While ended before main machine!" << std::endl;
+        //     return;
+        // }
     }
 
     whileMachine.print();
