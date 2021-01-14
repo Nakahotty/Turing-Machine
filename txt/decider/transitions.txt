@@ -24,7 +24,7 @@ write: 1
 cmd: L 
 state: q1 
 q_ 
-read:  
-write: 
+read: _ 
+write: _
 cmd: R 
 state: halt 

@@ -11,8 +11,8 @@ write: 1
 cmd: L 
 state: toZero
 q_ 
-read: 
-write: 
+read: _ 
+write: _
 cmd: R 
 state: halt 
 
@@ -29,7 +29,7 @@ write: X
 cmd: L 
 state: toX
 q_ 
-read: 
-write: 
+read: _ 
+write: _
 cmd: R 
 state: halt

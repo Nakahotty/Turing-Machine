@@ -1,0 +1,29 @@
+-WHILE
+
+q00  
+read: 0
+write: 0
+cmd: L 
+state: searchOne 
+q11 
+read: 1
+write: 1
+cmd: H 
+state: halt 
+
+-MAIN
+writeChar 
+read: 0 
+write: 5
+cmd: L 
+state: addChar
+startChar 
+read: 9 
+write: X 
+cmd: L 
+state: addChar
+writeOnSpace 
+read: _ 
+write: 5 
+cmd: L 
+state: addChar
