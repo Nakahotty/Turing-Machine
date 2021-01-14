@@ -2,6 +2,8 @@
 #define __CONTROLLER_CPP
 
 #include "controller.h"
+#include <fstream>
+#include <iostream>
 
 MachineController::MachineController(const std::string& input) : machine(Machine(input)) {}
 
@@ -115,7 +117,8 @@ void MachineController::initLoopMachines(Machine& whileMachine, Machine& main) {
     main.findState("addChar")->addTransition(writeOnSpace);
 }
 
-void MachineController::initZeroMachine(Machine& zeroMachine) {
+void MachineController::initZeroMachine(Machine& zeroMachine) {    
+    
     State* toZero = new State("to zero"); 
     State* init = new State("init");
     State* halt = new State("halt");
@@ -155,6 +158,23 @@ void MachineController::initXMachine(Machine& XMachine) {
     XMachine.findState("X")->addTransition(q0X);
     XMachine.findState("X")->addTransition(q1X);
     XMachine.findState("X")->addTransition(q_);
+}
+
+void MachineController::initDecider(Machine& decider) {
+    State* init = new State("init");
+    State* reject = new State("reject");
+    State* halt = new State("halt");
+
+    Transition* rejection = new Transition('0', '0', 'L', reject); // няма да завърши 
+    Transition* success = new Transition('1', '1', 'L' ,halt);
+
+    decider.addState(init);
+    decider.addState(reject);
+    decider.addState(halt);
+
+    decider.setCurrentState(init);
+    decider.findState("init")->addTransition(rejection);
+    decider.findState("init")->addTransition(success);
 }
 
 #endif

@@ -2,6 +2,8 @@
 #define __CONTROLLER_H
 
 #include "../machine/machine.cpp"
+#include <iostream>
+#include <fstream>
 
 class MachineController {
 public:
@@ -14,6 +16,7 @@ public:
     void initLoopMachines(Machine& whileMachine, Machine& main);
     void initZeroMachine(Machine& zeroMachine);
     void initXMachine(Machine& XMachine);
+    void initDecider(Machine& decider);
 
     void runMachine();
 private:

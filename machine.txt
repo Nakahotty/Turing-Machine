@@ -6,3 +6,15 @@
 0{searchOne} -> 0{searchOne}L
  {addChar} -> 5{addChar}L
 1{searchOne} -> 1{halt}H
+1{init} -> 1{halt}L
+Machine finished successfuly!
+
+1{init} -> 1{q1}L
+0{q1} -> 1{q1}L
+1{q1} -> 1{q1}L
+1{q1} -> 1{q1}L
+0{q1} -> 1{q1}L
+0{q1} -> 1{q1}L
+ {q1} ->  {halt}R
+Machine finished successfuly!
+

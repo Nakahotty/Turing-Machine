@@ -27,20 +27,7 @@ void Operations::composition() {
 void Operations::decider() {
     MachineController* ctrl; 
     Machine decider("001101");
-    State* init = new State("init");
-    State* reject = new State("reject");
-    State* halt = new State("halt");
-
-    Transition* rejection = new Transition('0', '0', 'L', reject); // няма да завърши 
-    Transition* success = new Transition('1', '1', 'L' ,halt);
-
-    decider.addState(init);
-    decider.addState(reject);
-    decider.addState(halt);
-
-    decider.setCurrentState(init);
-    decider.findState("init")->addTransition(rejection);
-    decider.findState("init")->addTransition(success);
+    ctrl->initDecider(decider);
     decider.start();
     decider.print();
 
@@ -80,7 +67,5 @@ void Operations::loopOverMachine() {
     std::cout << "Main tape:" << std::endl;
     main.print();
 }
-
-
 
 #endif

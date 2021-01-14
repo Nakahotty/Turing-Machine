@@ -1,0 +1,30 @@
+-DECIDER
+
+rejection 
+read: 0
+write: 0 
+cmd: L 
+state: reject 
+success
+read: 1
+write: 1
+cmd: L 
+state: halt 
+
+-TWO
+
+q01 
+read: 0 
+write: 1
+cmd: L 
+state: q1 
+q11 
+read: 1
+write: 1
+cmd: L 
+state: q1 
+q_ 
+read:  
+write: 
+cmd: R 
+state: halt 

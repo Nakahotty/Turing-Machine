@@ -1,0 +1,5 @@
+init  
+halt
+reject
+q0 
+q1
