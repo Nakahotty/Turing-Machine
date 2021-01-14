@@ -13,6 +13,7 @@ public:
     char getReadSymbol() const;
     char getWriteSymbol() const;
     char getCommand() const;
+    void print() const;
 private:
     char read,write,cmd;
     State* state;

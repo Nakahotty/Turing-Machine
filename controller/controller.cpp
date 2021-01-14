@@ -84,13 +84,23 @@ void MachineController::initTwoMachines(Machine& first, Machine& second) {
 }
 
 void MachineController::initLoopMachines(Machine& whileMachine, Machine& main) {
-    State* init = new State("init");
-    State* searchOne = new State("searchOne");
-    State* halt = new State("halt");
+    std::vector<std::string> read_states;
+    this->readStates(read_states);
 
+    State* init = new State(read_states[0]);
+    State* halt = new State(read_states[1]);
+    State* searchOne = new State(read_states[2]);
+
+///////////////////////////////////////////////////
+
+    std::vector<Transition*> transitions;
+    this->readTransitions(transitions);
+    
     Transition* q00 = new Transition('0', '0', 'L', searchOne);
     Transition* q11 = new Transition('1', '1', 'H', halt);
-    
+
+//////////////////////////////////////////
+
     whileMachine.addState(init);
     whileMachine.addState(searchOne);
     whileMachine.addState(halt);
@@ -101,7 +111,7 @@ void MachineController::initLoopMachines(Machine& whileMachine, Machine& main) {
     whileMachine.findState("searchOne")->addTransition(q00);
     whileMachine.findState("searchOne")->addTransition(q11);
 
-    State* addChar = new State("addChar");
+    State* addChar = new State(read_states[3]);
     
     Transition* writeChar = new Transition('0', '5', 'L', addChar);
     Transition* startChar = new Transition('9', 'X', 'L', addChar);
@@ -175,6 +185,56 @@ void MachineController::initDecider(Machine& decider) {
     decider.setCurrentState(init);
     decider.findState("init")->addTransition(rejection);
     decider.findState("init")->addTransition(success);
+}
+
+
+void MachineController::readStates(std::vector<std::string>& states) {
+    std::fstream state_file("./txt/loop/states.txt");
+    std::string state; 
+    while (std::getline(state_file,state)) {
+        states.push_back(state);
+    }
+    state_file.close();
+}
+
+void MachineController::readTransitions(std::vector<Transition*>& transitions) {
+    std::fstream trans_file("./txt/loop/transitions.txt");
+    char read,write,cmd;
+    std::string trans_line;
+
+    while(std::getline(trans_file, trans_line)) {
+        if (trans_line == "-WHILE")
+            continue;
+
+        if (trans_line == "-MAIN")
+            continue;
+
+        int startIndex = 4;
+
+        read = trans_line[0];
+        write = trans_line[2];
+        
+        std::string stateString;
+
+        while (trans_line[startIndex] != '}') {
+            stateString+=trans_line[startIndex];
+            ++startIndex;
+        }
+
+        ++startIndex;
+        cmd = trans_line[startIndex];
+    
+        State* to_state = new State(stateString);
+        Transition* trans = new Transition(read,write,cmd,to_state);
+        transitions.push_back(trans);
+    }
+
+    trans_file.close();
+
+    for (int i = 0; i < transitions.size(); i++) {
+        transitions[i]->print();
+        std::cout << transitions[i]->getNextState()->getName() << std::endl;
+    }
 }
 
 #endif

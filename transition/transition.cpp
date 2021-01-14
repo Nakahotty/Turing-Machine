@@ -29,6 +29,10 @@ char Transition::getCommand() const {
     return cmd;
 }
 
+void Transition::print() const {
+    std::cout << read << '/' << write << "{}" << cmd << std::endl;
+}
+
 std::ostream& operator<<(std::ostream& out, Transition& transition) {
     /* out << transition.getReadSymbol() << '/' << transition.getWriteSymbol() << "," 
     << transition.getCommand() << std::endl; */

@@ -1,4 +1,4 @@
-init 
-halt 
+init
+halt
 searchOne
-addChar 
+addChar

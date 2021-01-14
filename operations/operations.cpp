@@ -48,7 +48,6 @@ void Operations::decider() {
 
 void Operations::loopOverMachine() {
     MachineController* ctrl;
-    
     std::string whileInput("001000"), mainInput("09"); 
     
     Machine whileMachine(whileInput);

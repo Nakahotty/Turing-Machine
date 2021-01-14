@@ -9,6 +9,7 @@ class MachineController {
 public:
     MachineController() {};
     MachineController(const std::string&);
+    
     void initializeStates();
     void initializeTransitions();
     void initalizeMachine(const std::string&, State*);
@@ -17,6 +18,9 @@ public:
     void initZeroMachine(Machine& zeroMachine);
     void initXMachine(Machine& XMachine);
     void initDecider(Machine& decider);
+
+    void readStates(std::vector<std::string>& states);
+    void readTransitions(std::vector<Transition*>& transitions);
 
     void runMachine();
 private:
