@@ -7,6 +7,7 @@ class State;
 
 class Transition {
 public:
+    Transition(Transition*);
     Transition(char, char, char, State*);
     Transition& operator=(const Transition& other);
     State* getNextState();

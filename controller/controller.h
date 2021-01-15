@@ -19,12 +19,16 @@ public:
     void initXMachine(Machine& XMachine);
     void initDecider(Machine& decider);
 
-    void readStates(std::vector<std::string>& states);
-    void readTransitions(std::vector<Transition*>& transitions);
+    void readStates(std::vector<std::string>& states, std::string location);
+    void readTransitions(std::vector<Transition>& transitions, std::string location);
+    void readSingleTape(std::string& tape, std::string location);
+    void readMultiTape(std::vector<std::string>& tapes, std::string location);
 
     void runMachine();
 private:
     Machine machine;
+    // std::fstream state_file;
+    // std::fstream trans_file;
     State* getState(const std::string&);
 };
 

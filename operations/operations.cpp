@@ -9,7 +9,8 @@ void Operations::composition() {
     // Композиция: done
 
     MachineController* ctrl; 
-    std::string A = "11010";
+    std::string A, directory("./txt/composition/tapes.txt");
+    ctrl->readSingleTape(A,directory);
     Machine T1(A);
     ctrl->initZeroMachine(T1);
     T1.start();
@@ -26,12 +27,16 @@ void Operations::composition() {
 
 void Operations::decider() {
     MachineController* ctrl; 
-    Machine decider("001101");
+
+    std::string tape, location("./txt/decider/tapes.txt");
+    ctrl->readSingleTape(tape, location);
+
+    Machine decider(tape);
     ctrl->initDecider(decider);
     decider.start();
     decider.print();
 
-    Machine first("001101"),second("001101");
+    Machine first(tape),second(tape);
     ctrl->initTwoMachines(first, second);
     if (decider.finishedSuccessfuly()) {
         std::cout << "Decider finished SUCCESSFULY!" << std::endl;
@@ -48,10 +53,13 @@ void Operations::decider() {
 
 void Operations::loopOverMachine() {
     MachineController* ctrl;
-    std::string whileInput("001000"), mainInput("09"); 
     
-    Machine whileMachine(whileInput);
-    Machine main(mainInput);
+    std::vector<std::string> tapes;
+    std::string location("./txt/loop/tapes.txt");
+    ctrl->readMultiTape(tapes, location);
+
+    Machine whileMachine(tapes[0]);
+    Machine main(tapes[1]);
 
     ctrl->initLoopMachines(whileMachine, main);
 

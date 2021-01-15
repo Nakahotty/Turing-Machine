@@ -85,7 +85,8 @@ void MachineController::initTwoMachines(Machine& first, Machine& second) {
 
 void MachineController::initLoopMachines(Machine& whileMachine, Machine& main) {
     std::vector<std::string> read_states;
-    this->readStates(read_states);
+    std::string state_file = "./txt/loop/states.txt";
+    this->readStates(read_states, state_file);
 
     State* init = new State(read_states[0]);
     State* halt = new State(read_states[1]);
@@ -93,11 +94,18 @@ void MachineController::initLoopMachines(Machine& whileMachine, Machine& main) {
 
 ///////////////////////////////////////////////////
 
-    std::vector<Transition*> transitions;
-    this->readTransitions(transitions);
+    std::vector<Transition> transitions;
+    std::string trans_file = "./txt/loop/transitions.txt";
+    this->readTransitions(transitions, trans_file);
     
-    Transition* q00 = new Transition('0', '0', 'L', searchOne);
-    Transition* q11 = new Transition('1', '1', 'H', halt);
+    transitions[0].print();
+    std::cout << transitions[0].getNextState()->getName() << std::endl;
+
+    transitions[1].print();
+    std::cout << transitions[1].getNextState()->getName() << std::endl;
+
+    Transition* q00 = new Transition(transitions[0]);
+    Transition* q11 = new Transition(transitions[1]);
 
 //////////////////////////////////////////
 
@@ -128,14 +136,38 @@ void MachineController::initLoopMachines(Machine& whileMachine, Machine& main) {
 }
 
 void MachineController::initZeroMachine(Machine& zeroMachine) {    
-    
-    State* toZero = new State("to zero"); 
-    State* init = new State("init");
-    State* halt = new State("halt");
+    std::vector<std::string> states;
+    std::string state_file = "./txt/composition/states.txt";
+    readStates(states, state_file);
 
-    Transition* q00 = new Transition('0', '0', 'L', toZero);
-    Transition* q10 = new Transition('1', '0', 'L', toZero);
-    Transition* q_ = new Transition(' ', ' ', 'R', halt);
+    State* init = new State(states[0]);
+    State* halt = new State(states[1]);
+    State* toZero = new State(states[2]); 
+
+    std::vector<Transition> transitions;
+    std::string trans_file = "./txt/composition/transitions.txt";
+    readTransitions(transitions,trans_file);
+
+    // transitions[0].print();
+    // std::cout << transitions[0].getNextState()->getName() << std::endl;
+    // transitions[1].print();
+    // std::cout << transitions[1].getNextState()->getName() << std::endl;
+    // transitions[2].print();
+    // std::cout << transitions[2].getNextState()->getName() << std::endl;
+
+    Transition* q00 = new Transition(transitions[0]);
+    std::cout << "TUKA: "<< std::endl;
+    std::cout << q00->getReadSymbol() << std::endl;
+    std::cout << q00->getWriteSymbol() << std::endl;
+    std::cout << q00->getCommand() << std::endl;
+    std::cout << q00->getNextState()->getName() << std::endl;
+    Transition* q10 = new Transition(transitions[1]);
+    std::cout << "TUKA: "<< std::endl;
+    std::cout << q10->getReadSymbol() << std::endl;
+    std::cout << q10->getWriteSymbol() << std::endl;
+    std::cout << q10->getCommand() << std::endl;
+    std::cout << q10->getNextState()->getName() << std::endl;
+    Transition* q_ = new Transition(transitions[2]);
 
     zeroMachine.addState(init);
     zeroMachine.addState(halt);
@@ -150,13 +182,28 @@ void MachineController::initZeroMachine(Machine& zeroMachine) {
 }
 
 void MachineController::initXMachine(Machine& XMachine) {
-    State* toX = new State("X"); 
-    State* init = new State("init");
-    State* halt = new State("halt");
+    std::vector<std::string> states;
+    std::string state_file = "./txt/composition/states.txt";
+    readStates(states, state_file);
 
-    Transition* q0X = new Transition('0', 'X', 'L', toX);
-    Transition* q1X = new Transition('1', 'X', 'L', toX);
-    Transition* q_ = new Transition(' ', ' ', 'R', halt);
+    State* init = new State(states[0]);
+    State* halt = new State(states[1]);
+    State* toX = new State(states[3]);
+    
+    std::vector<Transition> transitions;
+    std::string trans_file = "./txt/composition/transitions.txt";
+    readTransitions(transitions, trans_file);
+
+    Transition* q0X = new Transition(transitions[3]);
+    Transition* q1X = new Transition(transitions[4]);
+    Transition* q_ = new Transition(transitions[5]);
+
+    transitions[3].print();
+    std::cout << transitions[3].getNextState()->getName() << std::endl;
+    transitions[4].print();
+    std::cout << transitions[4].getNextState()->getName() << std::endl;
+    transitions[5].print();
+    std::cout << transitions[5].getNextState()->getName() << std::endl;
 
     XMachine.addState(init);
     XMachine.addState(halt);
@@ -188,8 +235,8 @@ void MachineController::initDecider(Machine& decider) {
 }
 
 
-void MachineController::readStates(std::vector<std::string>& states) {
-    std::fstream state_file("./txt/loop/states.txt");
+void MachineController::readStates(std::vector<std::string>& states, std::string location) {
+    std::fstream state_file(location);
     std::string state; 
     while (std::getline(state_file,state)) {
         states.push_back(state);
@@ -197,23 +244,32 @@ void MachineController::readStates(std::vector<std::string>& states) {
     state_file.close();
 }
 
-void MachineController::readTransitions(std::vector<Transition*>& transitions) {
-    std::fstream trans_file("./txt/loop/transitions.txt");
+void MachineController::readTransitions(std::vector<Transition>& transitions, std::string location) {
+    std::fstream trans_file(location);
     char read,write,cmd;
     std::string trans_line;
 
     while(std::getline(trans_file, trans_line)) {
-        if (trans_line == "-WHILE")
+        if (trans_line == "-WHILE" || trans_line == "-ZERO")
             continue;
 
-        if (trans_line == "-MAIN")
+        if (trans_line == "-MAIN" || trans_line == "-X")
             continue;
 
         int startIndex = 4;
 
-        read = trans_line[0];
-        write = trans_line[2];
-        
+        //
+        if (trans_line[0] == '_')
+            read = ' ';
+        else 
+            read = trans_line[0];
+
+        if (trans_line[2] == '_')
+            write = ' ';
+        else 
+            write = trans_line[2];
+        //
+
         std::string stateString;
 
         while (trans_line[startIndex] != '}') {
@@ -225,15 +281,29 @@ void MachineController::readTransitions(std::vector<Transition*>& transitions) {
         cmd = trans_line[startIndex];
     
         State* to_state = new State(stateString);
-        Transition* trans = new Transition(read,write,cmd,to_state);
+        Transition trans(read,write,cmd,to_state);
         transitions.push_back(trans);
     }
 
     trans_file.close();
 
-    for (int i = 0; i < transitions.size(); i++) {
-        transitions[i]->print();
-        std::cout << transitions[i]->getNextState()->getName() << std::endl;
+    // for (int i = 0; i < transitions.size(); i++) {
+    //     transitions[i]->print();
+    //     std::cout << transitions[i]->getNextState()->getName() << std::endl;
+    // }    
+}
+
+void MachineController::readSingleTape(std::string& tape, std::string location) {
+    std::fstream read_tape(location);
+    std::getline(read_tape,tape);
+}
+
+void MachineController::readMultiTape(std::vector<std::string>& tapes, std::string location) {
+    std::fstream read_tape(location);
+    std::string tape;
+    
+    while (std::getline(read_tape,tape)) {
+        tapes.push_back(tape);
     }
 }
 

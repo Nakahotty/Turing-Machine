@@ -1,6 +1,6 @@
 -WHILE
-0/0{searchOne}L 
-1/1{halt}H 
+0/0{searchOne}L
+1/1{halt}H
 -MAIN
 0/5{addChar}L
 9/X{addChar}L

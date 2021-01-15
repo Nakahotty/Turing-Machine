@@ -1,35 +1,8 @@
 -ZERO
-
-q00 
-read: 0
-write: 0 
-cmd: L 
-state: toZero 
-q10 
-read: 1
-write: 1
-cmd: L 
-state: toZero
-q_ 
-read: _ 
-write: _
-cmd: R 
-state: halt 
-
+0/0{toZero}L
+1/0{toZero}L
+_/_{halt}R
 -X
-
-q0X 
-read: 0 
-write: X 
-cmd: L 
-state: toX 
-q1X 
-read: 1 
-write: X 
-cmd: L 
-state: toX
-q_ 
-read: _ 
-write: _
-cmd: R 
-state: halt
+0/X{toX}L
+1/X{toX}L
+_/_{addChar}L

@@ -33,7 +33,6 @@ State* Machine::findState(const std::string& stateName) {
             return s; 
         }
     }
-
     return nullptr;
 }
 
