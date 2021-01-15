@@ -1,30 +1,7 @@
 -DECIDER
-
-rejection 
-read: 0
-write: 0 
-cmd: L 
-state: reject 
-success
-read: 1
-write: 1
-cmd: L 
-state: halt 
-
+0/0{reject}H
+1/1{halt}H
 -TWO
-
-q01 
-read: 0 
-write: 1
-cmd: L 
-state: q1 
-q11 
-read: 1
-write: 1
-cmd: L 
-state: q1 
-q_ 
-read: _ 
-write: _
-cmd: R 
-state: halt 
+0/1{q1}L
+1/1{q1}L
+_/_{halt}R

@@ -6,11 +6,11 @@
 Transition::Transition(char _read, char _write, char _cmd, State* _state) :
     read(_read), write(_write), cmd(_cmd), state(_state) {}
 
-Transition::Transition(Transition* other) {
-    this->read = other->getReadSymbol();
-    this->write = other->getWriteSymbol();
-    this->cmd = other->getCommand();
-    this->state = other->getNextState();
+Transition::Transition(Transition other, State* other_state) {
+    this->read = other.getReadSymbol();
+    this->write = other.getWriteSymbol();
+    this->cmd = other.getCommand();
+    this->state = other_state;
 }
 
 Transition& Transition::operator=(const Transition& other) {
@@ -37,7 +37,7 @@ char Transition::getCommand() const {
 }
 
 void Transition::print() const {
-    std::cout << read << '/' << write << "{}" << cmd << std::endl;
+    std::cout << read << '/' << write << "{" << state->getName() << "}" << cmd << std::endl;
 }
 
 std::ostream& operator<<(std::ostream& out, Transition& transition) {

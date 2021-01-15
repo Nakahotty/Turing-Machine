@@ -61,18 +61,27 @@ State* MachineController::getState(const std::string& s) {
 void MachineController::initTwoMachines(Machine& first, Machine& second) {
     // first - writes ones
     // second - writes zeros
-    State* init = new State("init");
-    State* q0 = new State("q0");
-    State* q1 = new State("q1");
-    State* halt = new State("halt");
+
+    std::vector<std::string> read_states;
+    std::string state_file = "./txt/decider/states.txt";
+    this->readStates(read_states, state_file);
+
+    State* init = new State(read_states[0]);
+    State* halt = new State(read_states[1]);
+    State* q0 = new State(read_states[3]);
+    State* q1 = new State(read_states[4]);
 
     first.addState(init);
     first.addState(q1);
     first.setCurrentState(init);
+
+    std::vector<Transition> transitions;
+    std::string trans_file = "./txt/decider/transitions.txt";
+    this->readTransitions(transitions, trans_file);
     
-    Transition* q01 = new Transition('0', '1', 'L', q1);
-    Transition* q11 = new Transition('1', '1', 'L', q1);
-    Transition* q_ = new Transition(' ', ' ', 'R', halt);
+    Transition* q01 = new Transition(transitions[2], q1);
+    Transition* q11 = new Transition(transitions[3], q1);
+    Transition* q_ = new Transition(transitions[4], halt);
     
     first.findState("init")->addTransition(q01);
     first.findState("init")->addTransition(q11);
@@ -92,22 +101,12 @@ void MachineController::initLoopMachines(Machine& whileMachine, Machine& main) {
     State* halt = new State(read_states[1]);
     State* searchOne = new State(read_states[2]);
 
-///////////////////////////////////////////////////
-
     std::vector<Transition> transitions;
     std::string trans_file = "./txt/loop/transitions.txt";
     this->readTransitions(transitions, trans_file);
     
-    transitions[0].print();
-    std::cout << transitions[0].getNextState()->getName() << std::endl;
-
-    transitions[1].print();
-    std::cout << transitions[1].getNextState()->getName() << std::endl;
-
-    Transition* q00 = new Transition(transitions[0]);
-    Transition* q11 = new Transition(transitions[1]);
-
-//////////////////////////////////////////
+    Transition* q00 = new Transition(transitions[0], searchOne);
+    Transition* q11 = new Transition(transitions[1], halt);
 
     whileMachine.addState(init);
     whileMachine.addState(searchOne);
@@ -121,9 +120,9 @@ void MachineController::initLoopMachines(Machine& whileMachine, Machine& main) {
 
     State* addChar = new State(read_states[3]);
     
-    Transition* writeChar = new Transition('0', '5', 'L', addChar);
-    Transition* startChar = new Transition('9', 'X', 'L', addChar);
-    Transition* writeOnSpace = new Transition(' ', '5', 'L', addChar);
+    Transition* writeChar = new Transition(transitions[2], addChar);
+    Transition* startChar = new Transition(transitions[3], addChar);
+    Transition* writeOnSpace = new Transition(transitions[4], addChar);
 
     main.addState(init);
     main.addState(addChar);
@@ -148,26 +147,9 @@ void MachineController::initZeroMachine(Machine& zeroMachine) {
     std::string trans_file = "./txt/composition/transitions.txt";
     readTransitions(transitions,trans_file);
 
-    // transitions[0].print();
-    // std::cout << transitions[0].getNextState()->getName() << std::endl;
-    // transitions[1].print();
-    // std::cout << transitions[1].getNextState()->getName() << std::endl;
-    // transitions[2].print();
-    // std::cout << transitions[2].getNextState()->getName() << std::endl;
-
-    Transition* q00 = new Transition(transitions[0]);
-    std::cout << "TUKA: "<< std::endl;
-    std::cout << q00->getReadSymbol() << std::endl;
-    std::cout << q00->getWriteSymbol() << std::endl;
-    std::cout << q00->getCommand() << std::endl;
-    std::cout << q00->getNextState()->getName() << std::endl;
-    Transition* q10 = new Transition(transitions[1]);
-    std::cout << "TUKA: "<< std::endl;
-    std::cout << q10->getReadSymbol() << std::endl;
-    std::cout << q10->getWriteSymbol() << std::endl;
-    std::cout << q10->getCommand() << std::endl;
-    std::cout << q10->getNextState()->getName() << std::endl;
-    Transition* q_ = new Transition(transitions[2]);
+    Transition* q00 = new Transition(transitions[0], toZero);
+    Transition* q10 = new Transition(transitions[1], toZero);
+    Transition* q_ = new Transition(transitions[2], halt);
 
     zeroMachine.addState(init);
     zeroMachine.addState(halt);
@@ -194,16 +176,9 @@ void MachineController::initXMachine(Machine& XMachine) {
     std::string trans_file = "./txt/composition/transitions.txt";
     readTransitions(transitions, trans_file);
 
-    Transition* q0X = new Transition(transitions[3]);
-    Transition* q1X = new Transition(transitions[4]);
-    Transition* q_ = new Transition(transitions[5]);
-
-    transitions[3].print();
-    std::cout << transitions[3].getNextState()->getName() << std::endl;
-    transitions[4].print();
-    std::cout << transitions[4].getNextState()->getName() << std::endl;
-    transitions[5].print();
-    std::cout << transitions[5].getNextState()->getName() << std::endl;
+    Transition* q0X = new Transition(transitions[3], toX);
+    Transition* q1X = new Transition(transitions[4], toX);
+    Transition* q_ = new Transition(transitions[5], halt);
 
     XMachine.addState(init);
     XMachine.addState(halt);
@@ -218,12 +193,20 @@ void MachineController::initXMachine(Machine& XMachine) {
 }
 
 void MachineController::initDecider(Machine& decider) {
-    State* init = new State("init");
-    State* reject = new State("reject");
-    State* halt = new State("halt");
+    std::vector<std::string> states;
+    std::string state_file = "./txt/decider/states.txt";
+    readStates(states, state_file);
 
-    Transition* rejection = new Transition('0', '0', 'L', reject); // няма да завърши 
-    Transition* success = new Transition('1', '1', 'L' ,halt);
+    State* init = new State(states[0]);
+    State* halt = new State(states[1]);
+    State* reject = new State(states[2]);
+
+    std::vector<Transition> transitions;
+    std::string trans_file = "./txt/decider/transitions.txt";
+    readTransitions(transitions, trans_file);
+
+    Transition* rejection = new Transition(transitions[0], reject); // няма да завърши 
+    Transition* success = new Transition(transitions[1],halt);
 
     decider.addState(init);
     decider.addState(reject);
@@ -246,19 +229,16 @@ void MachineController::readStates(std::vector<std::string>& states, std::string
 
 void MachineController::readTransitions(std::vector<Transition>& transitions, std::string location) {
     std::fstream trans_file(location);
-    char read,write,cmd;
     std::string trans_line;
 
     while(std::getline(trans_file, trans_line)) {
-        if (trans_line == "-WHILE" || trans_line == "-ZERO")
-            continue;
+        char read,write,cmd;
 
-        if (trans_line == "-MAIN" || trans_line == "-X")
+        if (trans_line[0] == '-')
             continue;
 
         int startIndex = 4;
 
-        //
         if (trans_line[0] == '_')
             read = ' ';
         else 
@@ -268,10 +248,8 @@ void MachineController::readTransitions(std::vector<Transition>& transitions, st
             write = ' ';
         else 
             write = trans_line[2];
-        //
 
         std::string stateString;
-
         while (trans_line[startIndex] != '}') {
             stateString+=trans_line[startIndex];
             ++startIndex;
@@ -286,11 +264,6 @@ void MachineController::readTransitions(std::vector<Transition>& transitions, st
     }
 
     trans_file.close();
-
-    // for (int i = 0; i < transitions.size(); i++) {
-    //     transitions[i]->print();
-    //     std::cout << transitions[i]->getNextState()->getName() << std::endl;
-    // }    
 }
 
 void MachineController::readSingleTape(std::string& tape, std::string location) {

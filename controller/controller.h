@@ -21,6 +21,7 @@ public:
 
     void readStates(std::vector<std::string>& states, std::string location);
     void readTransitions(std::vector<Transition>& transitions, std::string location);
+    void readTransitions(std::vector<char>& readSymbols, std::vector<char>& writeSymbols, std::vector<char>& cmdSymbols, std::string location);
     void readSingleTape(std::string& tape, std::string location);
     void readMultiTape(std::vector<std::string>& tapes, std::string location);
 

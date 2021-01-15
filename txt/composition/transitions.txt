@@ -5,4 +5,4 @@ _/_{halt}R
 -X
 0/X{toX}L
 1/X{toX}L
-_/_{addChar}L
+_/_{halt}R
