@@ -6,7 +6,6 @@
 void Operations::composition() {
     // Дадено: 2 машини - Т1, Т2; вход - А
     // А = 11011 | Т1(А) -> 00000 | T2(T1(A)) -> XXXXX
-    // Композиция: done
 
     MachineController* ctrl; 
     std::string A, directory("./txt/composition/tapes.txt");
@@ -73,6 +72,16 @@ void Operations::loopOverMachine() {
 
     std::cout << "Main tape:" << std::endl;
     main.print();
+}
+
+void Operations::toSingleTape() {
+    MachineController* ctrl;
+
+    std::vector<std::string> tapes;
+    std::string location("./txt/multi/tapes.txt");
+    ctrl->readMultiTape(tapes, location);
+
+    Machine m1(tapes[0]), m2(tapes[1]), m3(tapes[2]);
 }
 
 #endif

@@ -9,6 +9,7 @@ public:
     static void composition();
     static void decider();
     static void loopOverMachine();
+    static void toSingleTape();
 };
 
 #endif
