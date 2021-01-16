@@ -81,7 +81,17 @@ void Operations::toSingleTape() {
     std::string location("./txt/multi/tapes.txt");
     ctrl->readMultiTape(tapes, location);
 
-    Machine m1(tapes[0]), m2(tapes[1]), m3(tapes[2]);
+    Machine main(tapes[0]);
+    std::vector<Machine> machines;
+    size_t size = tapes.size();
+    for(size_t i = 1; i < size; i++) {
+        Machine m(tapes[i]);
+        machines.push_back(m);
+    }
+
+    std::cout << main.getTape() << std::endl;
+    std::cout << machines[0].getTape() << std::endl;
+    std::cout << machines[1].getTape() << std::endl;
 }
 
 #endif
