@@ -218,6 +218,24 @@ void MachineController::initDecider(Machine& decider) {
     decider.findState("init")->addTransition(success);
 }
 
+void MachineController::initMultiMachine(Machine& main, std::vector<Machine> machines) {
+    std::vector<std::string> states;
+    std::string state_file = "./txt/multi/states.txt";
+    readStates(states, state_file);
+
+    // states ...
+
+    std::vector<Transition> transitions;
+    std::string trans_file = "./txt/multi/transitions.txt";
+    readTransitions(transitions, trans_file);
+
+    // transitions ...
+    /* 
+        0->9{toNine}L
+        X->x{toLilX}L
+        1->!{toExclamation}L
+    */
+}
 
 void MachineController::readStates(std::vector<std::string>& states, std::string location) {
     std::fstream state_file(location);

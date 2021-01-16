@@ -1,0 +1,6 @@
+-MULTI
+0/9{toNine}L
+X/x{toLilX}L
+1/!{toExclamation}L
+_/_{halt}L
+*/*{separated}L

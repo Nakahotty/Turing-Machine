@@ -83,7 +83,7 @@ void Operations::toSingleTape() {
 
     Machine main(tapes[0]);
     std::vector<Machine> machines;
-    size_t size = tapes.size();
+    size_t size = tapes.size(); 
     for(size_t i = 1; i < size; i++) {
         Machine m(tapes[i]);
         machines.push_back(m);

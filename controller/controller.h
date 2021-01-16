@@ -18,6 +18,7 @@ public:
     void initZeroMachine(Machine& zeroMachine);
     void initXMachine(Machine& XMachine);
     void initDecider(Machine& decider);
+    void initMultiMachine(Machine& main, std::vector<Machine> machines);
 
     void readStates(std::vector<std::string>& states, std::string location);
     void readTransitions(std::vector<Transition>& transitions, std::string location);
