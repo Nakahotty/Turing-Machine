@@ -2,7 +2,6 @@
 #define TAPE_H
 
 #include <iostream>
-#include "queue/queue.h"
 #include "list/dll.h"
 
 class Tape {

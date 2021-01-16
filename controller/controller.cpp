@@ -9,7 +9,6 @@ MachineController::MachineController(const std::string& input) : machine(Machine
 
 void MachineController::initializeStates() {
     // ----- Инициализираме състоянията и преходите ----- //
-
     State* q0 = new State("q0");
     State* q1 = new State("q1");
     State* q2 = new State("q2");
@@ -57,6 +56,8 @@ void MachineController::runMachine() {
 State* MachineController::getState(const std::string& s) {
     return machine.findState(s);
 }
+
+/////////////////////////////////////////////////////////////////////////
 
 void MachineController::initTwoMachines(Machine& first, Machine& second) {
     // first - writes ones

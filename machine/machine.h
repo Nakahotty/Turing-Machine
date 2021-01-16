@@ -20,7 +20,7 @@ public:
     void setTape(const std::string&);
     std::string getTape() const;
     
-    void print();
+    void print() const;
     void iterate();
     void start();
 

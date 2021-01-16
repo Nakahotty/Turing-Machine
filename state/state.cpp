@@ -7,7 +7,6 @@ State::State(const std::string& name) {
     this->name = name;
 }
 
-    
 std::string State::getName() const {
     return name;
 }

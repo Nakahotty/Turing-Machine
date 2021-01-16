@@ -34,3 +34,11 @@ Machine finished successfuly!
 0{searchOne} -> 0{searchOne}L
  {addChar} -> 5{addChar}L
 1{searchOne} -> 1{halt}H
+9{init} -> X{addChar}L
+0{init} -> 0{searchOne}L
+0{addChar} -> 5{addChar}L
+0{searchOne} -> 0{searchOne}L
+ {addChar} -> 5{addChar}L
+0{searchOne} -> 0{searchOne}L
+ {addChar} -> 5{addChar}L
+1{searchOne} -> 1{halt}H

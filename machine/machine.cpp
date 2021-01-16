@@ -53,23 +53,15 @@ void Machine::setTape(const std::string& input) {
     tape = Tape(input);
 }
 
-
 std::string Machine::getTape() const {
     return tape.getTapeString();
 }
 
-void Machine::print() {
+void Machine::print() const {
     tape.printWithCurr();
 }
 
 void Machine::iterate() {
-    /* 
-        Получаваме прехода по подаден символ
-        Записваме върху лентата символа, който е WRITE
-        Проверяваме командата, за да преместим машината по лентата
-        Преминаваме на следващо състояние
-    */
-
     out << tape.read() << *currentState << " -> ";
 
     Transition* next = currentState->getTransition(tape.read());
