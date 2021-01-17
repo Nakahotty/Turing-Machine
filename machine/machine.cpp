@@ -4,12 +4,15 @@
 #include "machine.h"
 #include <fstream>
 
-Machine::Machine(const std::string& input, State* start = nullptr) : tape(Tape(input)), currentState(start) {
+Machine::Machine() : tape(Tape(" ")) {
     fileName = "machine.txt";
     out.open(fileName.c_str(), std::ofstream::app);
 }
 
-Machine::Machine() {}
+Machine::Machine(const std::string& input, State* start = nullptr) : tape(Tape(input)), currentState(start) {
+    fileName = "machine.txt";
+    out.open(fileName.c_str(), std::ofstream::app);
+}
 
 Machine::Machine(const Machine& other) {
     this->copy(other);
@@ -47,6 +50,11 @@ bool Machine::isThereState(const std::string& stateName) {
 
 void Machine::setCurrentState(State* currentState) {
     this->currentState = currentState;
+}
+
+void Machine::addToTape(const std::string& other) {
+    std::string combined_tape = tape.getTapeString() + other;
+    tape = Tape(combined_tape);
 }
 
 void Machine::setTape(const std::string& input) {

@@ -17,6 +17,7 @@ public:
     State* findState(const std::string&);
     bool isThereState(const std::string&);
     void setCurrentState(State*);
+    void addToTape(const std::string&);
     void setTape(const std::string&);
     std::string getTape() const;
     

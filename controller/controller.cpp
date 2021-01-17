@@ -219,22 +219,67 @@ void MachineController::initDecider(Machine& decider) {
 }
 
 void MachineController::initMultiMachine(Machine& main, std::vector<Machine> machines) {
-    std::vector<std::string> states;
+    std::vector<std::string> states_strings;
     std::string state_file = "./txt/multi/states.txt";
-    readStates(states, state_file);
+    readStates(states_strings, state_file);
 
-    // states ...
+    State* init = new State(states_strings[0]);
+    State* halt = new State(states_strings[1]);
+    State* toNine = new State(states_strings[2]);
+    State* toLilX = new State(states_strings[3]);
+    State* toExclamation = new State(states_strings[4]);
+    State* separated = new State(states_strings[5]);
 
     std::vector<Transition> transitions;
     std::string trans_file = "./txt/multi/transitions.txt";
     readTransitions(transitions, trans_file);
 
-    // transitions ...
-    /* 
-        0->9{toNine}L
-        X->x{toLilX}L
-        1->!{toExclamation}L
-    */
+    Transition* q09 = new Transition(transitions[0], toNine);
+    Transition* q11 = new Transition(transitions[1], toNine);
+    Transition* q__ = new Transition(transitions[4], halt);
+
+    Transition* qXx = new Transition(transitions[2], toLilX);
+    Transition* q1ex = new Transition(transitions[3], toExclamation);
+    Transition* qStar = new Transition(transitions[5], separated);
+
+    main.addState(init);
+    main.addState(halt);
+
+    main.setCurrentState(init);
+    main.findState("init")->addTransition(q09);
+    main.findState("init")->addTransition(q11);
+    main.findState("init")->addTransition(qStar);
+
+    std::string mutli_tape;
+    size_t size = machines.size();
+    for(size_t i = 0; i < size; i++) {
+        mutli_tape+= '*' + machines[i].getTape();
+    } 
+
+    std::vector<State*> newStates;
+    newStates.push_back(toNine);
+    newStates.push_back(toLilX);
+    newStates.push_back(toExclamation);
+    newStates.push_back(separated);
+
+    main.addState(toNine);
+    main.addState(toLilX);
+    main.addState(toExclamation);
+    main.addState(separated);
+
+    main.addToTape(mutli_tape);
+
+    for (size_t i = 0; i < newStates.size(); i++) {
+        std::string stateName = newStates[i]->getName();
+        main.findState(stateName)->addTransition(q09);
+        main.findState(stateName)->addTransition(q1ex);
+        main.findState(stateName)->addTransition(qXx);
+        main.findState(stateName)->addTransition(qStar);
+        main.findState(stateName)->addTransition(q__);
+    }
+    
+    main.start();
+    main.print();
 }
 
 void MachineController::readStates(std::vector<std::string>& states, std::string location) {

@@ -1,6 +1,8 @@
--MULTI
+-MAIN 
 0/9{toNine}L
+1/1{toNine}L
+-MULTI
 X/x{toLilX}L
 1/!{toExclamation}L
-_/_{halt}L
+_/_{halt}R
 */*{separated}L
