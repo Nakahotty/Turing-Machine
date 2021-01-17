@@ -10,6 +10,7 @@ public:
     static void decider();
     static void loopOverMachine();
     static void toSingleTape();
+    static void runBasicMachine();
 };
 
 #endif

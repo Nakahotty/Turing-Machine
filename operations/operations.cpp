@@ -72,15 +72,12 @@ void Operations::loopOverMachine() {
         whileMachine.iterate();
     }
 
-    if (main.finishedSuccessfuly()) {
-        std::cout << "Main tape:" << std::endl;
-        main.print();
-    }
+    std::cout << "Main tape:" << std::endl;
+    main.print(); 
 }
 
 void Operations::toSingleTape() {
     // Transforming multiple machines into one
-
     MachineController* ctrl;
 
     std::vector<std::string> tapes;
@@ -103,6 +100,11 @@ void Operations::toSingleTape() {
         std::cout << "Converted multitape successfuly" << std::endl; 
         main.print();
     }
+}
+
+void Operations::runBasicMachine() {
+    MachineController* ctrl = new MachineController("0010000");
+    ctrl->runMachine();
 }
 
 #endif
