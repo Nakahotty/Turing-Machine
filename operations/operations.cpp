@@ -40,13 +40,15 @@ void Operations::decider() {
     if (decider.finishedSuccessfuly()) {
         std::cout << "Decider finished SUCCESSFULY!" << std::endl;
         first.start();
-        std::cout << first.finishedSuccessfuly() << std:: endl;
-        first.print();
+
+        if(first.finishedSuccessfuly())
+            first.print();
     } else {
         std::cout << "Decider did NOT FINISH!" << std::endl;
         second.start();
-        std::cout << second.finishedSuccessfuly() << std:: endl;
-        second.print();
+        
+        if(second.finishedSuccessfuly())
+            second.print();
     }
 }
 
@@ -70,11 +72,15 @@ void Operations::loopOverMachine() {
         whileMachine.iterate();
     }
 
-    std::cout << "Main tape:" << std::endl;
-    main.print();
+    if (main.finishedSuccessfuly()) {
+        std::cout << "Main tape:" << std::endl;
+        main.print();
+    }
 }
 
 void Operations::toSingleTape() {
+    // Transforming multiple machines into one
+
     MachineController* ctrl;
 
     std::vector<std::string> tapes;
@@ -90,6 +96,13 @@ void Operations::toSingleTape() {
     }
     
     ctrl->initMultiMachine(main,machines);
+
+    main.start();
+    
+    if (main.finishedSuccessfuly()) {
+        std::cout << "Converted multitape successfuly" << std::endl; 
+        main.print();
+    }
 }
 
 #endif

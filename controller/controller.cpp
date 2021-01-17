@@ -57,6 +57,15 @@ State* MachineController::getState(const std::string& s) {
     return machine.findState(s);
 }
 
+std::string MachineController::combineMachineTapes(std::vector<Machine> machines) {
+    std::string mutli_tape;
+    size_t size = machines.size();
+    for(size_t i = 0; i < size; i++) {
+        mutli_tape+= '*' + machines[i].getTape();
+    } 
+    return mutli_tape;
+}
+
 /////////////////////////////////////////////////////////////////////////
 
 void MachineController::initTwoMachines(Machine& first, Machine& second) {
@@ -250,11 +259,7 @@ void MachineController::initMultiMachine(Machine& main, std::vector<Machine> mac
     main.findState("init")->addTransition(q11);
     main.findState("init")->addTransition(qStar);
 
-    std::string mutli_tape;
-    size_t size = machines.size();
-    for(size_t i = 0; i < size; i++) {
-        mutli_tape+= '*' + machines[i].getTape();
-    } 
+    std::string mutli_tape = combineMachineTapes(machines);
 
     std::vector<State*> newStates;
     newStates.push_back(toNine);
@@ -268,6 +273,8 @@ void MachineController::initMultiMachine(Machine& main, std::vector<Machine> mac
     main.addState(separated);
 
     main.addToTape(mutli_tape);
+    std::cout << "Tapes concatenated" << std::endl;
+    main.print();
 
     for (size_t i = 0; i < newStates.size(); i++) {
         std::string stateName = newStates[i]->getName();
@@ -277,9 +284,6 @@ void MachineController::initMultiMachine(Machine& main, std::vector<Machine> mac
         main.findState(stateName)->addTransition(qStar);
         main.findState(stateName)->addTransition(q__);
     }
-    
-    main.start();
-    main.print();
 }
 
 void MachineController::readStates(std::vector<std::string>& states, std::string location) {

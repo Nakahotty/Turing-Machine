@@ -28,6 +28,7 @@ public:
     void runMachine();
 private:
     Machine machine;
+    std::string combineMachineTapes(std::vector<Machine>);
     State* getState(const std::string&);
 };
 
