@@ -1,0 +1,21 @@
+1{init} -> 1{toNine}L
+1{toNine} -> !{toExclamation}L
+0{toExclamation} -> 9{toNine}L
+1{toNine} -> !{toExclamation}L
+1{toExclamation} -> !{toExclamation}L
+*{toExclamation} -> *{separated}L
+X{separated} -> x{toLilX}L
+0{toLilX} -> 9{toNine}L
+X{toNine} -> x{toLilX}L
+X{toLilX} -> x{toLilX}L
+0{toLilX} -> 9{toNine}L
+*{toNine} -> *{separated}L
+1{separated} -> !{toExclamation}L
+0{toExclamation} -> 9{toNine}L
+1{toNine} -> !{toExclamation}L
+1{toExclamation} -> !{toExclamation}L
+0{toExclamation} -> 9{toNine}L
+*{toNine} -> *{separated}L
+ {separated} ->  {halt}R
+Machine finished successfuly!
+

@@ -276,7 +276,8 @@ void MachineController::initMultiMachine(Machine& main, std::vector<Machine> mac
     std::cout << "Tapes concatenated" << std::endl;
     main.print();
 
-    for (size_t i = 0; i < newStates.size(); i++) {
+    size_t size = newStates.size();
+    for (size_t i = 0; i < size; i++) {
         std::string stateName = newStates[i]->getName();
         main.findState(stateName)->addTransition(q09);
         main.findState(stateName)->addTransition(q1ex);
@@ -302,7 +303,7 @@ void MachineController::readTransitions(std::vector<Transition>& transitions, st
     while(std::getline(trans_file, trans_line)) {
         char read,write,cmd;
 
-        if (trans_line[0] == '-')
+        if (trans_line[0] == '-') 
             continue;
 
         int startIndex = 4;
