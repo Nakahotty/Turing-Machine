@@ -8,10 +8,6 @@
 #include "controller/controller.cpp"
 #include "operations/operations.cpp"
 
-TEST_CASE("Basic Machine Run Test") {
-    CHECK(0 == 0);
-}
-
 TEST_CASE("Composition of two Turing Machines") {
     MachineController* ctrl; 
     std::string A, directory("./txt/composition/tapes.txt");
@@ -162,8 +158,61 @@ TEST_CASE("Machine that runs a while-cycle over given Turing Machine") {
 }
 
 TEST_CASE("Multi tape Turing Machine transforming into single tape") {
-    CHECK(0 == 0);
-}
+    MachineController* ctrl;
+
+    std::vector<std::string> tapes;
+    std::string location("./txt/multi/tapes.txt");
+    ctrl->readMultiTape(tapes, location);
+
+    Machine main;
+    std::vector<Machine> machines;
+    size_t size = tapes.size(); 
+    for(size_t i = 0; i < size; i++) {
+        Machine m(tapes[i]);
+        machines.push_back(m);
+    }
+
+    // Tape read
+    CHECK(machines[0].getTape() == tapes[0]);
+    CHECK(machines[1].getTape() == tapes[1]);
+    CHECK(machines[2].getTape() == tapes[2]);
+    
+    ctrl->initMultiMachine(main,machines);
+
+    // State read
+
+    CHECK(main.findState("init") != nullptr);
+    CHECK(main.findState("halt") != nullptr);
+    CHECK(main.findState("toNine") != nullptr);
+    CHECK(main.findState("toLilX") != nullptr);
+    CHECK(main.findState("toExclamation") != nullptr);
+    CHECK(main.findState("separated") != nullptr);
+
+    // Transition read
+
+    CHECK(main.findState("toNine")->hasTransition('0'));
+    CHECK(main.findState("toNine")->hasTransition('1'));
+    CHECK(main.findState("toNine")->hasTransition('X'));
+    CHECK(main.findState("toNine")->hasTransition('*'));
+    
+    CHECK(main.findState("toLilX")->hasTransition('0'));
+    CHECK(main.findState("toLilX")->hasTransition('1'));
+    CHECK(main.findState("toLilX")->hasTransition('X'));
+    CHECK(main.findState("toLilX")->hasTransition('*'));
+
+    CHECK(main.findState("toExclamation")->hasTransition('0'));
+    CHECK(main.findState("toExclamation")->hasTransition('1'));
+    CHECK(main.findState("toExclamation")->hasTransition('X'));
+    CHECK(main.findState("toExclamation")->hasTransition('*'));
+    
+    CHECK(main.findState("separated")->hasTransition('0'));
+    CHECK(main.findState("separated")->hasTransition('1'));
+    CHECK(main.findState("separated")->hasTransition('X'));
+
+    main.start();
+    
+    CHECK(main.finishedSuccessfuly());
+}   
 
 int main() {
     doctest::Context().run();
