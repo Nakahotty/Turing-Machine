@@ -6,9 +6,5 @@
 #include "operations/operations.cpp"
 
 int main() {
-    Operations::runBasicMachine();
-    Operations::composition();
-    Operations::decider();
-    Operations::loopOverMachine();
-    Operations::toSingleTape();
+    Operations::runConsole();
 }

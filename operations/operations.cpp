@@ -102,9 +102,53 @@ void Operations::toSingleTape() {
     }
 }
 
-void Operations::runBasicMachine() {
+void Operations::basicMachine() {
     MachineController* ctrl = new MachineController("0010000");
     ctrl->runMachine();
+}
+
+void Operations::runConsole() {
+    bool exit = 0;
+    int cmd;
+    std::cout << "===== TURING MACHINE =====" << std::endl;
+    std::cout << " 1: Composition " << std::endl;
+    std::cout << " 2: Branching of 2 machines " << std::endl;
+    std::cout << " 3: While cycle over a machine " << std::endl;
+    std::cout << " 3: Transform multiple machines into one " << std::endl;
+    std::cout << " 5: Run basic machine " << std::endl;
+    std::cout << " 0: Exit " << std::endl;
+    
+    do {
+        std::cout << " Choose an operation: ";
+        std::cin>>cmd;
+        switch (cmd)
+        {
+        case 1:
+            composition();
+            break;
+        case 2:
+            decider();
+            break;
+        case 3:
+            loopOverMachine();
+            break;
+        case 4:
+            toSingleTape();
+            break;
+        case 5:
+            basicMachine();
+            break;
+        case 0:
+            exit = 1;
+            break;
+        default:
+            std::cout << "Invalid command input!" << std::endl;
+            exit = 1;
+            break;
+        }
+        
+        std::cout << "==========================" << std::endl;
+    } while (!exit);
 }
 
 #endif
