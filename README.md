@@ -1,8 +1,6 @@
 # Turing Machine 
 
 ### By Atanas Ivanov
-# Copyright
-All rights reserved for **Atanas Ivanov**. The project is strictly licensed and **no files or assets are allowed** for use in any other projects outside **Turing-Machine**. 
 
 Да се реализира библиотека за ефективна работа с машини на Тюринг. Машините на Тюринг имат потенциално безкрайна двупосочна лента, в която могат да бъдат записвани произволни символи. 
 
@@ -28,3 +26,6 @@ All rights reserved for **Atanas Ivanov**. The project is strictly licensed and 
 - преобразуването на няколко машини до еднолентова машина ✔️
 - реализирани тестове използвайки doctest ✔️
 - да се реализира недетерминирана машина на Тюринг и преобразуването ѝ до детерминирана ❌
+
+## Copyright
+All rights reserved for **Atanas Ivanov**. The project is strictly licensed and **no files or assets are allowed** for use in any other projects outside **Turing-Machine**. 
